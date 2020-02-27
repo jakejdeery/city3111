@@ -1,0 +1,46 @@
+%
+% city3111, jake deery, 2020
+
+% preamble
+\documentclass[a4paper,12pt,twocolumn]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[left=12.7mm, right=12.7mm, top=12.7mm, bottom=25.4mm]{geometry}
+\usepackage{anyfontsize}
+\usepackage{fancyhdr}
+
+
+% vars
+\setlength{\headheight}{12.7mm}
+\renewcommand\familydefault{\ttdefault}
+
+
+% start document 
+\begin{document}
+
+
+    % includes - title
+    \include{tex/_title_page} % front page
+    
+    
+    % includes - preamble
+    \include{tex/_abstract}
+    \include{tex/_acknowledgements}
+
+
+    % include - pres
+    \include{tex/_toc} % table of contents
+    \include{tex/_tof} % table of figures
+
+
+    % include - chapters
+    \pagestyle{fancy} % set up header/footer
+    \fancyhf{}
+    \fancyhead[R]{\leftmark}
+    \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+    \cfoot{\thepage}
+
+    \include{tex/chapter_1} % chapter 1
+
+
+\end{document}
