@@ -6,13 +6,16 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[left=12.7mm, right=12.7mm, top=12.7mm, bottom=25.4mm]{geometry}
+\usepackage{cite}
 \usepackage{anyfontsize}
 \usepackage{fancyhdr}
 
 
 % vars
 \setlength{\headheight}{12.7mm}
-\renewcommand\familydefault{\ttdefault}
+\renewcommand\familydefault{\rmdefault} % uncomment for roman font
+%\renewcommand\familydefault{\sfdefault} % uncomment for sans-serif font
+%\renewcommand\familydefault{\ttdefault} % uncomment for monospaced font
 
 
 % start document 
@@ -20,17 +23,17 @@
 
 
     % includes - title
-    \include{tex/_title_page} % front page
+    \include{tex/misc/_title_page} % front page
     
     
     % includes - preamble
-    \include{tex/_abstract}
-    \include{tex/_acknowledgements}
+    \include{tex/intro/_abstract}
+    \include{tex/intro/_acknowledgements}
 
 
     % include - pres
-    \include{tex/_toc} % table of contents
-    \include{tex/_tof} % table of figures
+    \include{tex/misc/_toc} % table of contents
+    \include{tex/misc/_tof} % table of figures
 
 
     % include - chapters
@@ -40,7 +43,14 @@
     \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
     \cfoot{\thepage}
 
-    \include{tex/chapter_1} % chapter 1
+    \include{tex/intro/_introduction} % intro
+    \include{tex/chapters/chapter_1} % chapter 1
+    \include{tex/chapters/chapter_2} % chapter 2
+    \include{tex/chapters/chapter_3} % chapter 3
+    \include{tex/chapters/chapter_4} % chapter 4
+    \include{tex/chapters/chapter_5} % chapter 5
+    \include{tex/outro/_conclusion} % outro
 
-
+    % references
+    \include{tex/misc/_bibliography}
 \end{document}
