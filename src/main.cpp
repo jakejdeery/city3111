@@ -18,8 +18,8 @@ int main(int argc, char** argv) {
 	double endBound = 128.0;
 	double precision = 0.01;
 	double boundRange = abs(startBound - endBound);
-	int worldSize = 0;
-	int worldRank = 0;
+	int worldSize = 0.0;
+	int worldRank = 0.0;
 
 	// setup
 	locale systemLocale("en_GB.UTF-8");
@@ -40,6 +40,7 @@ int main(int argc, char** argv) {
 	// main system echo
 	if(worldRank == 0) {
 		// vars
+		int rankBest = 0;
 		int iTotal = 0;
 		double bestFit[4];
 		uTimeOut deltaTime;
@@ -54,6 +55,7 @@ int main(int argc, char** argv) {
 		// for loop for slave messages
 		for(int i = 0; i < (worldSize - 1); i++) {
 			// vars
+			int rankCurrent = 0;
 			int iCurrent = 0;
 			double currentFit[4];
 			
@@ -61,7 +63,7 @@ int main(int argc, char** argv) {
 			MPI_Recv(&currentFit[0], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 			MPI_Recv(&currentFit[1], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 			MPI_Recv(&currentFit[2], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-			MPI_Recv(&currentFit[3], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 3, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+			MPI_Recv(&rankCurrent, 1, MPI_INT, MPI_ANY_SOURCE, 3, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 			MPI_Recv(&iCurrent, 1, MPI_INT, MPI_ANY_SOURCE, 4, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 			
 			// calculate iterations
@@ -72,6 +74,8 @@ int main(int argc, char** argv) {
 				bestFit[0] = currentFit[0];
 				bestFit[1] = currentFit[1];
 				bestFit[2] = currentFit[2];
+				bestFit[3] = currentFit[3];
+				rankBest = rankCurrent;
 			}
 		}
 		
@@ -80,7 +84,7 @@ int main(int argc, char** argv) {
 		deltaTime = endTime - startTime;
 		
 		cout << "[I] The program ran through " << iTotal << " loops in " << deltaTime.count() / 1000 << " ms" << "\n";
-		cout << "[I] The best fit was " << bestFit[2] << " at {" << bestFit[0] << "," << bestFit[1] << "}" << "\n";
+		cout << "[I] The best fit was " << bestFit[2] << " at {" << bestFit[0] << "," << bestFit[1] << "} found by process " << rankBest << "\n";
 		cout << "[E] Program quits" << "\n";
 		cout << "\n";
 	} else {
@@ -113,7 +117,7 @@ int main(int argc, char** argv) {
 		MPI_Send(&localFit[0], 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
 		MPI_Send(&localFit[1], 1, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD);
 		MPI_Send(&localFit[2], 1, MPI_DOUBLE, 0, 2, MPI_COMM_WORLD);
-		MPI_Send(&worldRank, 1, MPI_DOUBLE, 0, 3, MPI_COMM_WORLD);
+		MPI_Send(&worldRank, 1, MPI_INT, 0, 3, MPI_COMM_WORLD);
 		MPI_Send(&i, 1, MPI_INT, 0, 4, MPI_COMM_WORLD);
 	}
 	
