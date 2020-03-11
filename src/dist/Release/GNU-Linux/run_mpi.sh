@@ -1,1 +1,1 @@
-mpirun -np 120 -hostfile ./hostfile ./src
+mpirun -np 4 -hostfile ./hostfile ./src

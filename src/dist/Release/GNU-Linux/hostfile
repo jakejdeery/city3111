@@ -1,5 +1,6 @@
-city3111-vm1	slots=24
-city3111-vm2	slots=24
-city3111-vm3	slots=24
-city3111-vm4	slots=24
-city3111-vm5	slots=24
+#city3111-vm1	slots=24
+#city3111-vm2	slots=24
+#city3111-vm3	slots=24
+#city3111-vm4	slots=24
+#city3111-vm5	slots=24
+localhost	slots=4
