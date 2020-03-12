@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
 
 	// call the method
 	opClassObj->doSearch(-512, 512);
-	
+
 	// delete object
 	delete opClassObj;
 

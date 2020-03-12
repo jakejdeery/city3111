@@ -8,6 +8,7 @@
 
 // namespaces - std
 using std::cout;
+using std::flush;
 using std::locale;
 
 // namespaces - etc
@@ -33,4 +34,3 @@ private:
 };
 
 #endif /* OPCLASS_H */
-

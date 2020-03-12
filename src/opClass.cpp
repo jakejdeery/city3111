@@ -59,9 +59,9 @@ double opClass::doSearch(double startBound, double endBound) {
 	bunchSize = boundRange / worldSize;
 	startBound = startBound + (bunchSize * worldRank);
 	endBound = endBound - (bunchSize  * ((worldSize - 1) - worldRank)); // these bounds overlap, but that's okay
-	
-	// alert searching
-	if(worldRank == 0) cout << "[I] Starting op search . . . ";
+
+	// declaare start of search
+	cout << "[I] Starting op search . . . " << flush;
 
 	//
 	// main for loop
@@ -74,7 +74,7 @@ double opClass::doSearch(double startBound, double endBound) {
 				localFit[1] = y;
 				localFit[2] = fitness;
 			};
-			
+
 			// effort counter
 			effort++;
 		}
@@ -88,39 +88,38 @@ double opClass::doSearch(double startBound, double endBound) {
 	if(worldRank == 0) {
 		// vars
 		uTimeOut deltaTime;
-		
+
 		// getting time
 		auto startTime = uTimeGet::now();
-		
+
 		// for loop for slave messages
 		for(int i = 0; i < (worldSize - 1); i++) { // -1 because we have already stored data from proc#0
 			// vars
 			double currentFit[3];
 			int currentRank = 0;
-			
+
 			// wait for news
 			MPI_Recv(&currentFit[0], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 			MPI_Recv(&currentFit[1], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 			MPI_Recv(&currentFit[2], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 			MPI_Recv(&currentRank, 1, MPI_INT, MPI_ANY_SOURCE, 3, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-			
+
 			// if the received values are the best, keep them
 			if(currentFit[2] < bestFit[2]) {
 				bestFit[0] = currentFit[0];
 				bestFit[1] = currentFit[1];
 				bestFit[2] = currentFit[2];
 				bestRank = currentRank;
-				
 			}
 		}
-		
+
 		// end and calculate time
 		auto endTime = uTimeGet::now();
 		deltaTime = endTime - startTime;
-		
+
 		cout << "[I] Each process ran through approx. " << effort << " loops each" << "\n";
 		cout << "[I] This took approx. " << deltaTime.count() / 1000 << " ms per process" << "\n";
-		cout << "[I] The best fit was " << bestFit[2] << " at {" << bestFit[0] << "," << bestFit[1] << "}" << "\n";
+		cout << "[I] The best fit was " << bestFit[2] << " at {" << bestFit[0] << ";" << bestFit[1] << "}" << "\n";
 		cout << "[I] The best fit was found by process " << bestRank << "\n";
 		cout << "\n";
 	} else {
@@ -130,7 +129,7 @@ double opClass::doSearch(double startBound, double endBound) {
 		MPI_Send(&localFit[2], 1, MPI_DOUBLE, 0, 2, MPI_COMM_WORLD);
 		MPI_Send(&worldRank, 1, MPI_INT, 0, 3, MPI_COMM_WORLD);
 	}
-	
+
 	// end process
 	return 0;
 }
