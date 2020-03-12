@@ -61,7 +61,7 @@ double opClass::doSearch(double startBound, double endBound) {
 	endBound = endBound - (bunchSize  * ((worldSize - 1) - worldRank)); // these bounds overlap, but that's okay
 
 	// declaare start of search
-	cout << "[I] Starting op search . . . " << flush;
+	if(worldRank == 0) cout << "[I] Starting op search . . . " << flush;
 
 	//
 	// main for loop
