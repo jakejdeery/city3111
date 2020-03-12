@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
 	opClass * opClassObj = new opClass();
 
 	// call the method
-	opClassObj->doSearch(-8192, 8192);
+	opClassObj->doSearch(-512, 512);
 	
 	// delete object
 	delete opClassObj;

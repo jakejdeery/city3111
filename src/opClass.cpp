@@ -47,7 +47,7 @@ double opClass::getFit(double x, double y) {
 
 double opClass::doSearch(double startBound, double endBound) {
 	// vars
-	double precision = 0.1;
+	double precision = 0.0001;
 	double boundRange = abs(startBound - endBound);
 	double localFit[3];
 	double bestFit[3];
