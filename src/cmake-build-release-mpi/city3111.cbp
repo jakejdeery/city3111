@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="city3111"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/axessta/CLionProjects/city3111/cmake-build-release-mpi"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/axessta/CLionProjects/city3111/cmake-build-release-mpi"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="city3111">
+				<Option output="/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/city3111" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/axessta/CLionProjects/city3111/cmake-build-release-mpi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.1/../../../../include/c++/9.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.1/../../../../include/c++/9.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.1/../../../../include/c++/9.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 city3111"/>
+					<CompileFile command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="city3111/fast">
+				<Option output="/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/city3111" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/axessta/CLionProjects/city3111/cmake-build-release-mpi"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.1/../../../../include/c++/9.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.1/../../../../include/c++/9.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.1/../../../../include/c++/9.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 city3111/fast"/>
+					<CompileFile command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/axessta/CLionProjects/city3111/cmake-build-release-mpi"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="make -j4 -f &quot;/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/axessta/CLionProjects/city3111/main.cpp">
+			<Option target="city3111"/>
+		</Unit>
+		<Unit filename="/home/axessta/CLionProjects/city3111/main.h">
+			<Option target="city3111"/>
+		</Unit>
+		<Unit filename="/home/axessta/CLionProjects/city3111/opClass.cpp">
+			<Option target="city3111"/>
+		</Unit>
+		<Unit filename="/home/axessta/CLionProjects/city3111/opClass.h">
+			<Option target="city3111"/>
+		</Unit>
+		<Unit filename="/home/axessta/CLionProjects/city3111/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

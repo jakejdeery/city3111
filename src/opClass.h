@@ -1,3 +1,4 @@
+// opClass.h, jake deery, 2020
 #ifndef OPCLASS_H
 #define OPCLASS_H
 

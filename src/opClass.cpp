@@ -1,3 +1,4 @@
+// opClass.cpp, jake deery, 2020
 #include "opClass.h"
 
 opClass::opClass() {
