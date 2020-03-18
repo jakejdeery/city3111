@@ -48,9 +48,8 @@ double opClass::getFit(double x, double y) {
 
 double opClass::doSearch(double startBound, double endBound) {
 	// vars
-	double precision = 0.01;
+	double precision = 0.001;
 	double boundRange = abs(startBound - endBound);
-	double localFit[3];
 	double bestFit[3];
 	int bestRank = 0;
 	int effort = 0;
@@ -70,10 +69,10 @@ double opClass::doSearch(double startBound, double endBound) {
 		for(double y = startBound; y < endBound + precision; y += precision) {
 			double fitness = getFit(x,y);
 
-			if(fitness < localFit[2]) {
-				localFit[0] = x;
-				localFit[1] = y;
-				localFit[2] = fitness;
+			if(fitness < bestFit[2]) {
+                bestFit[0] = x;
+                bestFit[1] = y;
+                bestFit[2] = fitness;
 			};
 
 			// effort counter
@@ -119,15 +118,16 @@ double opClass::doSearch(double startBound, double endBound) {
 		deltaTime = endTime - startTime;
 
 		cout << "[I] Each process ran through approx. " << effort << " loops each" << "\n";
+        cout << "[I] The program ran through approx. " << effort * worldSize << " loops in total" << "\n";
 		cout << "[I] This took approx. " << deltaTime.count() / 1000 << " ms per process" << "\n";
 		cout << "[I] The best fit was " << bestFit[2] << " at {" << bestFit[0] << ";" << bestFit[1] << "}" << "\n";
 		cout << "[I] The best fit was found by process " << bestRank << "\n";
 		cout << "\n";
 	} else {
 		// send the results
-		MPI_Send(&localFit[0], 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-		MPI_Send(&localFit[1], 1, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD);
-		MPI_Send(&localFit[2], 1, MPI_DOUBLE, 0, 2, MPI_COMM_WORLD);
+		MPI_Send(&bestFit[0], 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+		MPI_Send(&bestFit[1], 1, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD);
+		MPI_Send(&bestFit[2], 1, MPI_DOUBLE, 0, 2, MPI_COMM_WORLD);
 		MPI_Send(&worldRank, 1, MPI_INT, 0, 3, MPI_COMM_WORLD);
 	}
 
