@@ -8,8 +8,9 @@
 #include <chrono>
 
 // typedef - float
-typedef float f32_t;
-typedef long double f64_t;
+typedef float float32_t;
+typedef double float64_t;
+typedef long double float96_t;
 
 // namespaces - std
 using std::cout;
@@ -18,20 +19,20 @@ using std::locale;
 
 // namespaces - etc
 using uTimeGet = std::chrono::steady_clock;
-using uTimeOut = std::chrono::duration<f64_t, std::micro>;
+using uTimeOut = std::chrono::duration<float64_t, std::milli>;
 
 class opClass {
 public:
 	// public methods
 	opClass();
 	~opClass();
-	f64_t doSearch(f64_t startBound, f64_t endBound);
+	float64_t doSearch(float64_t startBound, float64_t endBound, float64_t precision);
 
 	// publics vars
 	
 private:
 	// private methods
-	f64_t getFit(f64_t x, f64_t y);
+	float64_t getFit(float64_t x, float64_t y);
 
 	// private vars
 	int32_t worldSize = 0;

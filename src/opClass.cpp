@@ -35,9 +35,9 @@ opClass::~opClass() {
 	}
 }
 
-f64_t opClass::getFit(f64_t x, f64_t y) {
+float64_t opClass::getFit(float64_t x, float64_t y) {
 	// vars
-	double fit;
+	float64_t fit;
 
 	// calculate the fit
 	fit = -1.0 * (y + 47.0) * sin(sqrt(abs(y + x / 2.0 + 47.0))) + -1.0 * x * sin(sqrt(abs(x - (y + 47.0))));
@@ -46,14 +46,14 @@ f64_t opClass::getFit(f64_t x, f64_t y) {
 	return fit;
 }
 
-f64_t opClass::doSearch(f64_t startBound, f64_t endBound) {
+float64_t opClass::doSearch(float64_t startBound, float64_t endBound, float64_t precision) {
 	// vars
-    f64_t precision = 0.001;
-    f64_t boundRange = abs(startBound - endBound);
-    f64_t bestFit[3];
+    float64_t boundRange = abs(startBound - endBound);
+    float64_t bestFit[3];
 	uint64_t bestRank = 0;
     uint64_t effort = 0;
     uint64_t bunchSize = 0;
+    uTimeOut deltaTime;
 
 	// defines
 	bunchSize = boundRange / worldSize;
@@ -65,9 +65,13 @@ f64_t opClass::doSearch(f64_t startBound, f64_t endBound) {
 
 	//
 	// main for loop
-	for(double x = startBound; x < endBound + precision; x += precision) {
-		for(double y = startBound; y < endBound + precision; y += precision) {
-			double fitness = getFit(x,y);
+
+    // getting time
+    auto startTime = uTimeGet::now();
+
+	for(float64_t x = startBound; x < endBound + precision; x += precision) {
+		for(float64_t y = startBound; y < endBound + precision; y += precision) {
+			float64_t fitness = getFit(x,y);
 
 			if(fitness < bestFit[2]) {
                 bestFit[0] = x;
@@ -79,6 +83,10 @@ f64_t opClass::doSearch(f64_t startBound, f64_t endBound) {
 			effort++;
 		}
 	}
+
+    // end and calculate time
+    auto endTime = uTimeGet::now();
+    deltaTime = endTime - startTime;
 	
 	// alert done
 	if(worldRank == 0) cout << "done" << "\n";
@@ -86,16 +94,12 @@ f64_t opClass::doSearch(f64_t startBound, f64_t endBound) {
 	//
 	// main system echo
 	if(worldRank == 0) {
-		// vars
-		uTimeOut deltaTime;
 
-		// getting time
-		auto startTime = uTimeGet::now();
 
 		// for loop for slave messages
 		for(uint64_t i = 0; i < (worldSize - 1); i++) { // -1 because we have already stored data from proc#0
 			// vars
-			f64_t currentFit[3];
+			float64_t currentFit[3];
             uint64_t currentRank = 0;
 
 			// wait for news
@@ -113,15 +117,11 @@ f64_t opClass::doSearch(f64_t startBound, f64_t endBound) {
 			}
 		}
 
-		// end and calculate time
-		auto endTime = uTimeGet::now();
-		deltaTime = endTime - startTime;
-
 		cout << "[I] Each process ran through approx. " << effort << " loops each" << "\n";
         cout << "[I] The program ran through approx. " << effort * worldSize << " loops in total" << "\n";
-		cout << "[I] This took approx. " << deltaTime.count() / 1000 << " ms per process" << "\n";
+        cout << "[I] This took approx. " << deltaTime.count() << " ms per process" << "\n";
 		cout << "[I] The best fit was " << bestFit[2] << " at {" << bestFit[0] << ";" << bestFit[1] << "}" << "\n";
-		cout << "[I] The best fit was found by process " << bestRank << " of " << worldSize << "\n";
+		cout << "[I] The best fit was found by process " << bestRank + 1 << " of " << worldSize << "\n";
 		cout << "\n";
 	} else {
 		// send the results
