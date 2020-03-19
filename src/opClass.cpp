@@ -35,7 +35,7 @@ opClass::~opClass() {
 	}
 }
 
-double opClass::getFit(double x, double y) {
+f64_t opClass::getFit(f64_t x, f64_t y) {
 	// vars
 	double fit;
 
@@ -46,14 +46,14 @@ double opClass::getFit(double x, double y) {
 	return fit;
 }
 
-double opClass::doSearch(double startBound, double endBound) {
+f64_t opClass::doSearch(f64_t startBound, f64_t endBound) {
 	// vars
-	double precision = 0.001;
-	double boundRange = abs(startBound - endBound);
-	double bestFit[3];
-	int bestRank = 0;
-	int effort = 0;
-	int bunchSize = 0;
+    f64_t precision = 0.001;
+    f64_t boundRange = abs(startBound - endBound);
+    f64_t bestFit[3];
+	uint64_t bestRank = 0;
+    uint64_t effort = 0;
+    uint64_t bunchSize = 0;
 
 	// defines
 	bunchSize = boundRange / worldSize;
@@ -93,10 +93,10 @@ double opClass::doSearch(double startBound, double endBound) {
 		auto startTime = uTimeGet::now();
 
 		// for loop for slave messages
-		for(int i = 0; i < (worldSize - 1); i++) { // -1 because we have already stored data from proc#0
+		for(uint64_t i = 0; i < (worldSize - 1); i++) { // -1 because we have already stored data from proc#0
 			// vars
-			double currentFit[3];
-			int currentRank = 0;
+			f64_t currentFit[3];
+            uint64_t currentRank = 0;
 
 			// wait for news
 			MPI_Recv(&currentFit[0], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
@@ -121,7 +121,7 @@ double opClass::doSearch(double startBound, double endBound) {
         cout << "[I] The program ran through approx. " << effort * worldSize << " loops in total" << "\n";
 		cout << "[I] This took approx. " << deltaTime.count() / 1000 << " ms per process" << "\n";
 		cout << "[I] The best fit was " << bestFit[2] << " at {" << bestFit[0] << ";" << bestFit[1] << "}" << "\n";
-		cout << "[I] The best fit was found by process " << bestRank << "\n";
+		cout << "[I] The best fit was found by process " << bestRank << " of " << worldSize << "\n";
 		cout << "\n";
 	} else {
 		// send the results
