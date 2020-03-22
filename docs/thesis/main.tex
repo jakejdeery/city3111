@@ -4,15 +4,21 @@
 % preamble
 \documentclass[a4paper,12pt,twocolumn]{report}
 \usepackage[utf8]{inputenc}
+\usepackage[english=nohyphenation]{hyphsubst}
 \usepackage[english]{babel}
 \usepackage[left=12.7mm, right=12.7mm, top=12.7mm, bottom=25.4mm]{geometry}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage[center]{caption}
 \usepackage{cite}
 \usepackage{anyfontsize}
 \usepackage{fancyhdr}
 
-
 % vars
 \setlength{\headheight}{12.7mm}
+\setlength{\parskip}{1em}
+\setlength{\parindent}{0em}
+\graphicspath{{CITY3111/bitmaps}}
 \renewcommand\familydefault{\rmdefault} % uncomment for roman font
 %\renewcommand\familydefault{\sfdefault} % uncomment for sans-serif font
 %\renewcommand\familydefault{\ttdefault} % uncomment for monospaced font
@@ -23,34 +29,39 @@
 
 
     % includes - title
-    \include{tex/misc/_title_page} % front page
+    \include{CITY3111/tex/misc/_title_page} % front page
     
     
     % includes - preamble
-    \include{tex/intro/_abstract}
-    \include{tex/intro/_acknowledgements}
+    \onecolumn
+    \include{CITY3111/tex/intro/_acknowledgements}
+    \include{CITY3111/tex/intro/_declaration}
+    \include{CITY3111/tex/intro/_abstract}
+    \twocolumn
 
 
     % include - pres
-    \include{tex/misc/_toc} % table of contents
-    \include{tex/misc/_tof} % table of figures
+    \include{CITY3111/tex/misc/_toc} % table of contents
+    \include{CITY3111/tex/misc/_tof} % table of figures
 
 
     % include - chapters
     \pagestyle{fancy} % set up header/footer
     \fancyhf{}
     \fancyhead[R]{\leftmark}
+    \fancyhead[L]{\rightmark}
+    \renewcommand{\sectionmark}[1]{\markright{\thesection~- ~#1}}
     \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
     \cfoot{\thepage}
 
-    \include{tex/intro/_introduction} % intro
-    \include{tex/chapters/chapter_1} % chapter 1
-    \include{tex/chapters/chapter_2} % chapter 2
-    \include{tex/chapters/chapter_3} % chapter 3
-    \include{tex/chapters/chapter_4} % chapter 4
-    \include{tex/chapters/chapter_5} % chapter 5
-    \include{tex/outro/_conclusion} % outro
+    \include{CITY3111/tex/intro/_introduction} % intro
+    \include{CITY3111/tex/chapters/chapter_1} % chapter 1
+    \include{CITY3111/tex/chapters/chapter_2} % chapter 2
+    \include{CITY3111/tex/chapters/chapter_3} % chapter 3
+    \include{CITY3111/tex/chapters/chapter_4} % chapter 4
+    \include{CITY3111/tex/chapters/chapter_5} % chapter 5
+    \include{CITY3111/tex/outro/_conclusion} % outro
 
     % references
-    \include{tex/misc/_bibliography}
+    \include{CITY3111/tex/misc/_bibliography}
 \end{document}

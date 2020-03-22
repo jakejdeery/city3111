@@ -1,2 +1,38 @@
 % chapter 1
 \chapter{Literature Review}
+\section{What, how and why parallel?}
+To begin my literature review, I started by asking myself the broadest of questions in this specific subject field: what is parallel computing, how is it done at a fundamental level and why should it be done? When searching for the answers to these questions, I fell upon a book titled ‘Introduction to Parallel Computing’ by Ananth Grama (et al. 2003) \cite{grama_2003}.
+
+Within this book, I found that parallel computing has been around for a while but its methods and purposes have changed over time. Grama et al. argues that parallel programming took a while to take off due to the uncertainty of hardware evolution going forward and the lack of consistent platforms to develop on. As of 2003 this was changing however, with the standardisation of parallel platforms bringing about a much shorter development time for such projects.
+
+The book also discusses the arguments for parallelism, as well as its real-world applications. When discussing the arguments for parallelism, the book authors suggest that pooling resources such as CPU time, memory and data links typically results in a high-performance computer, with the added benefits of high-availability and larger caching and higher aggregate bandwidth.
+
+These benefits lend themselves well to several applications, ranging from engineering and scientific research to commercial applications such as web hosting and digital banking. One particular example that piqued my interest was its applications in computer systems. Problems that were traditionally very computationally expensive (i.e. cryptography or distributed algorithm solving) can now be done on clusters in a much-reduced time.
+
+Within Chapters 6 and 7 of this book, the authors expose two very different yet also very powerful methods of parallel programming. Chapter 6 covers programming using the message-passing model, a general term used to express any form of parallel program that sends its instructions to separate processes (either internally within a computer or externally to multiple nodes in a networked cluster), while chapter 6 covers shared address space programming, which is typically achieved using POSIX threads.
+
+Having read through both chapters, I decided that the method best suited to my problem (i.e. building a Beowulf computer) would be message-passing. Message-passing is the older, more researched method of inter-computer parallelism with more available papers and better suited my needs as a whole for this particular project.
+
+\section{A look into message-passing parallelism: MPI}
+In order to better understand exactly why message-passing was used more often in inter-computer parallelism over shared address space parallelism, I decided to look into methods of message-passing programming. While I found many books on the subject matter, by far the most reputable and comprehensive title was ‘Using MPI - Portable parallel programming with the Message-Passing Interface’ by William Gropp et. al. (2014) [2].
+
+Gropp et al. define message-passing as a collection of processes that only have local memory but maintain the ability to pass information between each other using some form of intercommunication protocol. Message-passing from once process to another inherently requires actions to be taken by both processes, which raises an interesting question in my mind: does that mean each process within a message-passing cluster is a client/server in and of itself?
+
+\begin{figure}
+    \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_1.png}
+    \caption{Diagram from book showing abstract message-passing architecture\cite{gropp_2014}}
+    \label{}
+\end{figure}
+
+Also expressed in this chapter is the advantages found in using a message-passing model. For one, it is incredibly versatile, allowing for easy development, debugging and deployment on a wide range of hardware. Once question that did occur to me, which I shall address later in this section, is: how does heterogeneous hardware affect the performance of a cluster?
+
+The main point raised in this particular chapter, however, is the performance gains to be had from utilising message-passing, which is exactly what I am hunting for in my research. According to the authors, message-passing permits the host hardware full management over its caching, thus affording the CPU full and unhindered functionality which in turn drives performance gains over even the most generously designed of single-processor machines with regards to available cache memory.
+
+Section 1,5 and Chapter 2 of this book specifically offers insight into one particular implementation of a message-passing standard: Message-Passing Interface (MPI) and its governing body, the MPI forum. The book authors tell of the development of the MPI standard as a necessity of the time in an age where message-passing softwares were plentiful, typically too bespoke for general purpose high-performance computing (HPC) and commercial in nature. The MPI Forum concluded in 1992 they would develop a standard which was portable, open and aimed to be completed in a year. The subsequent product was MPI-1 (1994) \cite{mpi_1994}, released after little over a year of frantic development.
+
+The MPI standard has since been revised numerous times, with its latest publication coming in 2015 \cite{mpi_2015}. MPI can therefore be seen as a fresh and well-maintained standard based around a paradigm that is suitable for my research topic. The next piece of secondary research that comes to mind centres around discovering a suitable network implementation to run MPI atop.
+
+Referring lastly back to a question I posed earlier in this section "how does heterogeneous hardware affect the performance of a cluster?", Section 7,4 of this particular book expresses how MPI manages the translation of data representation between systems with incompatible data formats. While this is encouraging news for heterogeneous clusters, it does not satisfy my curiosity and additional research will be needed to cover this topic point.
+
+\section{Networking with MPI: TCP and Infiniband}
+Sample Text
