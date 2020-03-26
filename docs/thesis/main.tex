@@ -3,30 +3,43 @@
 
 % preamble
 \documentclass[a4paper,12pt,twocolumn]{report}
+\usepackage[left=12.70mm, right=12.70mm, top=12.70mm, bottom=25.40mm]{geometry}
+\usepackage[euler]{textgreek}
+\usepackage[unicode]{hyperref}
 \usepackage[utf8]{inputenc}
-\usepackage[english=nohyphenation]{hyphsubst}
 \usepackage[english]{babel}
-\usepackage[left=12.7mm, right=12.7mm, top=12.7mm, bottom=25.4mm]{geometry}
+\usepackage[english=nohyphenation]{hyphsubst}
 \usepackage{indentfirst}
+\usepackage{float}
 \usepackage{graphicx}
+\usepackage{listings}
+\usepackage{tocloft}
 \usepackage[center]{caption}
 \usepackage{cite}
 \usepackage{anyfontsize}
 \usepackage{fancyhdr}
 
+
 % vars
-\setlength{\headheight}{12.7mm}
-\setlength{\parskip}{1em}
-\setlength{\parindent}{0em}
+\hypersetup{unicode=true,colorlinks=true,allcolors=black}
+\setlength{\headheight}{12.70mm}
+\renewcommand{\thesection}{\thechapter{,}\arabic{section}}
+\renewcommand{\thefigure}{\thesection{,}\arabic{figure}}
+\setlength{\cftsecnumwidth}{3.75em}
+\setlength{\cftfignumwidth}{3.75em}
+\setlength{\parskip}{1.00em}
+\setlength{\parindent}{0.00em}
 \graphicspath{{CITY3111/bitmaps}}
-\renewcommand\familydefault{\rmdefault} % uncomment for roman font
-%\renewcommand\familydefault{\sfdefault} % uncomment for sans-serif font
-%\renewcommand\familydefault{\ttdefault} % uncomment for monospaced font
+\renewcommand{\familydefault}{\rmdefault} % uncomment for roman font
+%\renewcommand{\familydefault}{\sfdefault} % uncomment for sans-serif font
+%\renewcommand{\familydefault}{\ttdefault} % uncomment for monospaced font
 
 
 % start document 
 \begin{document}
 
+    % use roman numbering for frontmatter
+    \pagenumbering{roman}
 
     % includes - title
     \include{CITY3111/tex/misc/_title_page} % front page
@@ -34,9 +47,10 @@
     
     % includes - preamble
     \onecolumn
-    \include{CITY3111/tex/intro/_acknowledgements}
+    \include{CITY3111/tex/intro/_dedication}
     \include{CITY3111/tex/intro/_declaration}
     \include{CITY3111/tex/intro/_abstract}
+    \include{CITY3111/tex/intro/_acknowledgements}
     \twocolumn
 
 
@@ -44,6 +58,8 @@
     \include{CITY3111/tex/misc/_toc} % table of contents
     \include{CITY3111/tex/misc/_tof} % table of figures
 
+    % use arabic numbering for mainmatter
+    \pagenumbering{arabic}
 
     % include - chapters
     \pagestyle{fancy} % set up header/footer
@@ -62,6 +78,7 @@
     \include{CITY3111/tex/chapters/chapter_5} % chapter 5
     \include{CITY3111/tex/outro/_conclusion} % outro
 
-    % references
+    % outro extended
     \include{CITY3111/tex/misc/_bibliography}
+    \include{CITY3111/tex/outro/_appendices}
 \end{document}
