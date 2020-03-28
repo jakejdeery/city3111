@@ -54,7 +54,7 @@ I therefore resolved to press on with Open MPI using TCP. My next natural step w
 \section{Understanding Parallel Programming using Open MPI: Example software}
 To garner an understanding of how Open MPI works in a practical setting, I want to find some example source code. Open MPI has an up-to-date API reference \cite{open_mpi_2020} and features workshop sessions, explaining through digital lectures how to program a basic `hello world' system. The discovered example program can be found in Appendix α.
 
-Anyone familiar with C/C++ should understand the syntax involved in the above code snippet, the only difference is the methods in use (specifically, the four MPI methods). Referencing the Open MPI documentation, each of these methods should roughly achieve the following:
+Anyone familiar with C/C++ should understand the syntax involved in the aforementioned code snippet, the only difference is the methods in use (specifically, the four MPI methods). Referencing the Open MPI documentation, each of these methods should roughly achieve the following:
 
 \begin{itemize}
     \item \textbf{\emph{MPI\_Init}} -- This method initialises the MPI environment either using the C/C++ arcg/argv[] pointers or with NULL values.
@@ -71,22 +71,30 @@ If my understanding the API is precise, the example code will, when compiled, di
     \label{figure_2}
 \end{figure}
 
-The Open MPI example code functions as intended and displays a `hello world' prompt, but the world only encompasses a single process at this time. In order to introduce more processes into the world, I need to introduce a runtime component which will facilitate the spawning of additional processes as well as their communication across my cluster -- even between nodes.
+The Open MPI example code functions as intended and displays a `hello world' prompt, but the world only encompasses a single process at this time. In order to introduce more processes into the world, I need to introduce a runtime component which will facilitate the spawning of additional processes as well as their communication across my cluster -- even between nodes. This runtime is included in the Open MPI distribution, which I will further research in my system analysis.
 
 \section{Discussion on an alternative to Open MPI: PVM}
 In my literature review so far, I have looked at different methods available to me for creating a parallel cluster and have narrowed down on one particular framework. Before I conclude my literature review, I am going to discuss another framework that could be used and why I won't be using it.
 
 The first, and oldest of the two frameworks is parallel virtual machine (PVM). According to its manual \cite{geist_et_al_1995}, PVM aims to provide much of the same message-passing functionality as MPI does but instead of offering each node up as individuals to solve a whole, it attempts to simulate one large, singular virtual machine upon which many processor cores co-exist.
 
-These design difference are born out of the differences in their development and purpose, according to Dr. Ekaterina Elts \cite{elts_2004}. Take the development argument, for example. As we've previously discussed, MPI had a rather rapid development with a large number of stakeholders whom all had to be satiated. PVM was developed and designed earlier than MPI and by a single research group in Oak Ridge, TN with a view to create a virtual machine that could span multiple machines. MPI, in contrast, explicitly specified against parallel virtualisation within its core specification.
+These design difference are born out of the differences in their development and purpose, according to Dr. Elts \cite{elts_2004}. Take the development argument, for example. As we've previously discussed, MPI had a rather rapid development with a large number of stakeholders whom all had to be satiated. PVM was developed and designed earlier than MPI and by a single research group in Oak Ridge, TN with a view to create a virtual machine that could span multiple machines. MPI, in contrast, explicitly specified against parallel virtualisation within its core specification.
 
-These differences in development and goal lead to two very different frameworks and implementations. MPI allows for flexible allocation of processes, with many topologies being feasible while PVM only allows for a master/slave architecture with poor fault tolerance if the master node falls over. Additionally, as PVM attempts to pool all memory under one virtual machine, the aforementioned cache control speedups MPI typically experiences are lost in PVM.
+These differences in development and goal lead to two very different frameworks and implementations. MPI allows for flexible allocation of processes, with many topologies being feasible (likely a requirement of so many stakeholders) while PVM only allows for a master/slave architecture with poor fault tolerance if the master node falls over. Additionally, as PVM attempts to pool all memory under one virtual machine, the aforementioned cache control speedups MPI typically experiences are lost in PVM.
 
-To better explain the previous point, imagine a suitable Republic such as the French Republic. There are two main institutions at play, somewhat analogous to PVM and MPI in function. In the French Republic, the \emph{président} or \emph{présidente} appoints his or her \emph{gouvernement} who will then liaise with them on a regular basis, but the président retains authority in the cabinet (i.e. a master/slave architecture). This relationship can be seen as the relationship nodes are under with PVM, one of rigidity and structure.
+To better explain the previous point, imagine a suitable Republic such as the French Republic. There are two main institutions at play, somewhat analogous to PVM and MPI in function. In the French Republic, the \emph{président} or \emph{présidente} appoints his or her \emph{gouvernement} who will then liaise on a regular basis, but the président retains authority in the cabinet (i.e. a master/slave architecture). This relationship can be seen as the relationship nodes are under with PVM, one of rigidity and structure.
 
 The second pillar of any good republic's structure is the \emph{parliament}, specifically the \emph{Assemblée Nationale} in our example. The Assemblée Nationale is brought together collectively to perform a function in unison, with little to no guidance aside from a schedule (i.e. a mesh topology). This is more analogous to MPI, whose processes are loosely directed by a runtime but are otherwise free to communicate with any other member of the cluster as it sees fit.
 
 For my purposes and function, having the flexibility of being able to choose my topology is critical. I don't yet know what programming challenges I may encounter, and having a more up-to-date and powerful tool-set seems like the best choice for my project going forward.
 
 \section{Conclusion on Literature Review}
+Within my literature review, I have investigated different methods one can utilise in order to produce a working parallel computer using commodity, open-source software and have investigated the principles underlying parallelism and why one might choose to use such methods. 
 
+I have taken an in-depth look at the MPI standard and expressed why this standard is suitable for my project goal, and have picked out Open MPI and a popular example implementation of the MPI standard to further express its function and usefulness to my project, offering example code for reference.
+
+I have then taken a step back from Open MPI and looked at PVM as an alternative technology with which similar projects have been completed using before, discussing the fundamental differences between them and why PVM would not be as suitable for my task as MPI.
+
+In conclusion to my literature review, I offer an impact case study from the Research Excellence Framework of 2014 \cite{trew_et_al_2014}. Dr Trew et al. posit that the impact of MPI is far-reaching, with MPI being regarded the \emph{de-facto} standard in parallel computer programming.
+
+This has been attributed to its wide availability, with some distribution being available for almost all architectures ranging from desktop computers to the TOP500 supercomputers (2014), and the portability associated with MPI's availability.
