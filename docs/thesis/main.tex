@@ -12,27 +12,42 @@
 \usepackage{indentfirst}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{charter}
+\usepackage{helvet}
 \usepackage{listings}
 \usepackage{tocloft}
 \usepackage[center]{caption}
 \usepackage{cite}
 \usepackage{anyfontsize}
 \usepackage{fancyhdr}
+\usepackage{titlesec}
 
 
 % vars
 \hypersetup{unicode=true,colorlinks=true,allcolors=black}
-\setlength{\headheight}{12.70mm}
-\renewcommand{\thesection}{\thechapter{,}\arabic{section}}
-\renewcommand{\thefigure}{\thesection{,}\arabic{figure}}
-\setlength{\cftsecnumwidth}{3.75em}
-\setlength{\cftfignumwidth}{3.75em}
-\setlength{\parskip}{1.00em}
-\setlength{\parindent}{0.00em}
+\setlength{\headheight}
+    {12.70mm}
+\renewcommand{\thesection}
+    {\thechapter{,}\arabic{section}}
+\renewcommand{\thefigure}
+    {\thesection{,}\arabic{figure}}
+\setlength{\cftsecnumwidth}
+    {3.75em}
+\setlength{\cftfignumwidth}
+    {3.75em}
+\setlength{\parskip}
+    {1.00em}
+\setlength{\parindent}
+    {0.00em}
 \graphicspath{{CITY3111/bitmaps}}
-\renewcommand{\familydefault}{\rmdefault} % uncomment for roman font
-%\renewcommand{\familydefault}{\sfdefault} % uncomment for sans-serif font
-%\renewcommand{\familydefault}{\ttdefault} % uncomment for monospaced font
+\renewcommand{\familydefault}
+    {\rmdefault}
+\titleformat{\chapter}[display]
+    {\normalfont\sffamily\huge\bfseries}
+    {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\section}
+    {\normalfont\sffamily\Large\bfseries}
+    {\thesection}{1em}{}
 
 
 % start document 
@@ -47,16 +62,18 @@
     
     % includes - preamble
     \onecolumn
-    \include{CITY3111/tex/intro/_dedication}
-    \include{CITY3111/tex/intro/_declaration}
-    \include{CITY3111/tex/intro/_abstract}
-    \include{CITY3111/tex/intro/_acknowledgements}
+        \include{CITY3111/tex/intro/_dedication}
+        \include{CITY3111/tex/intro/_declaration}
+        \include{CITY3111/tex/intro/_abstract}
+        \include{CITY3111/tex/intro/_acknowledgements}
     \twocolumn
 
 
     % include - pres
-    \include{CITY3111/tex/misc/_toc} % table of contents
-    \include{CITY3111/tex/misc/_tof} % table of figures
+    \onecolumn
+        \include{CITY3111/tex/misc/_toc} % table of contents
+        \include{CITY3111/tex/misc/_tof} % table of figures
+    \twocolumn
 
     % use arabic numbering for mainmatter
     \pagenumbering{arabic}
@@ -66,8 +83,10 @@
     \fancyhf{}
     \fancyhead[R]{\leftmark}
     \fancyhead[L]{\rightmark}
-    \renewcommand{\sectionmark}[1]{\markright{\thesection~- ~#1}}
-    \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+    \renewcommand{\sectionmark}[1]
+        {\markright{\sffamily\thesection~- ~#1}}
+    \renewcommand{\chaptermark}[1]
+        {\markboth{\sffamily#1}{}}
     \cfoot{\thepage}
 
     \include{CITY3111/tex/intro/_introduction} % intro
@@ -79,6 +98,8 @@
     \include{CITY3111/tex/outro/_conclusion} % outro
 
     % outro extended
-    \include{CITY3111/tex/misc/_bibliography}
-    \include{CITY3111/tex/outro/_appendices}
+    \onecolumn
+        \include{CITY3111/tex/misc/_bibliography}
+        \include{CITY3111/tex/outro/_appendices}
+    \twocolumn
 \end{document}

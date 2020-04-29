@@ -1,7 +1,15 @@
 % render toc
 \cleardoublepage
 \phantomsection
-%\addcontentsline{toc}{chapter}{Table of Contents}
+%\addcontentsline{toc}{chapter}{Table of Contents} -- don't bother to add toc in toc!?
+
+\renewcommand{\cfttoctitlefont}
+    {\normalfont\sffamily\huge\bfseries}
+\renewcommand{\cftchapfont}
+    {\sffamily\bfseries}
+\renewcommand{\cftchappagefont}
+    {\sffamily}
+
 \renewcommand{\contentsname}{Table of Contents}
 
 \tableofcontents
