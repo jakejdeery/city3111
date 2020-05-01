@@ -2,3 +2,91 @@
 \cleardoublepage
 \phantomsection
 \chapter{Design}
+\section{Designing my cluster: Virtual Network configuration \& topology}
+When designing my system, many of the considerations appear to naturally come from the Requirements \& Analysis stage. For example, I will need to consider how virtual components interact with one-another, as well as with the physical hardware it is housed on. I will also need to put strong consideration into how the system performs and what bottlenecks could exist which might cause the system to behave sub-optimally.
+
+To that end, I hope to discuss my desired implementation of many of the same aforementioned components in this chapter as were discussed in the prior chapter. In this section, I will open by setting forth the architecture of my existing physical network as well as proposing a suitable virtual network to be constructed within the hypervisor.
+
+\textbf{\sffamily{The existing network topology: A Map}}
+
+In order to design a new network topology for my Beowulf cluster to integrate with, I first need to explain to you the reader the exact nature of my current network.
+
+In order to achieve this, I will lay out in a topographic map how all my devices currently communicate both with each other and with the internet with a brief description of exactly what devices are performing which functions. Then, to give the map some context, I will express examples of how certain transactions may occur across the network.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_3.png}
+    \caption{A topology diagram of my pre-existing network configuration including DS inner workings}
+    \label{figure_3}
+\end{figure}
+
+Working from the top down, I first believe the Internet needs no in-depth explanation. There are currently two versions of the Internet running in parallel: the older Internet Protocol (IP) version 4 which we all use on a daily basis to communicate, fetch data, share the general stuff we do, whoever we are and whatever we value. The second version of the Internet is the IPv6 suite which is much newer, smaller and is not cross-compatible with IPv4. This suite was published to help ease a predicted squeeze on the address space found in IPv4.
+
+My ISP does not currently feature IPv6 support, however my network does. This will be an important consideration in the design process I am about to undertake, as I will need to take extra care in ensuring that my guest OSes are capable of downloading packages and updates via the Internet and having a pre-configured IPv6 network may cause newer OSes to think there is an IPv6 gateway available when there isn't.
+
+Moving downwards toward the on-premise equipment, I have three separate network devices outside of the DS: the edge gateway device, the physical switch and my personal computer Saren. Firstly, the edge gateway manages communications between all internal devices and the internet with a LAN subnet of 192.168.0.0/24. The physical switch operates on layer 2 of the OSI model and facilitates communications between any physical devices on my network not connecting via the edge gateway's built-in Wi-Fi access point.
+
+Lastly, my PC, Saren, will be used to oversee operations and issue commands to both the physical hardware on my network and the virtualised components found on my DS. I will achieve this by using a combination of the Proxmox VE web interface to manage the virtual hardware, Virt-Viewer to directly interact with the console of each individual guest OS and SSH to access teletype sessions on each system once they are fully configured.
+
+Finally reaching the DS itself, this is where the nuts and bolts of the operation come into life. Within the DS there is another, much faster virtual switch which is used to virtually connect all of my guest OSes together. This virtual switch also has direct access to the physical NICs on the server to facilitate external communications.
+
+In addition to the virtual switch, there are currently a plethora of guest OSes running various components of my home network. I have decided to include the two most vital ones however, and the ones that must run in order to provision a skeleton network (i.e. one with internet).
+
+The Network Gateway operates as a communicator between the edge gateway and the rest of the network, providing a larger subnet of 172.16.0.0/16. It also acts as the only DHCP and DNS server advertised within my home network and provides DNS forwarding and caching to facilitate fast internet access for devices trying to access the internet.
+
+The Domain Controller manages network-wide authentication tasks as well as timekeeping and policy-setting. The Domain Controller won't necessarily be of particular use to us however it does offer DNS propagation for internal network devices so it cannot be shut down during even the most minimal network environments.
+
+\textbf{\sffamily{The existing network topology: Some examples}}
+
+To demonstrate how devices currently connect to my network communicate, I will express some fictitious examples of communication routes. This is relevant simply because it helps build a picture in you, the reader's mind of the basic structure involved in this system.
+
+First, lets imagine Saren wants to acquire some arbitrary data from a session-less (i.e. UDP) source on the internet. Without diving into the differences between the TCP and UDP protocols, Saren would send a request which would first travel to the network gateway via the physical and virtual switches. The network gateway would then recognise the destination of the request as external and send the packet to the edge gateway via the virtual and physical switches once more. The edge gateway will then send the request off onto the internet, and from there direct and responses via the same path the request was sent (i.e. to Saren via the network gateway).
+
+I appreciate how complex such an example may be, so allow me to explain another, perhaps simpler to grasp example to supplement my main paragraph above. Imagine again some session-less request happening, but this time it is being done by the hypervisor itself, Old-Man-Star. As the hypervisor is technically also hosting the network router, any data exchanges all happen internally across the system busses. The resultant computation is a request packet destined for the edge router and ultimately the internet, which will go via the physical router. When viewed in this sense, one of the potential advantages of using a hypervisor to prototype OpenMPI software becomes apparent: there is a huge drop in the delay experienced when exchanging information that would otherwise need to travel between two physical nodes.
+
+\textbf{\sffamily{The revised network topology: The five guest OSes \& other alterations}}
+
+Armed with a topology map and a detailed understanding of the network structure as a whole, I can now explain to you the additions I will be making to the structure of the network and why.
+
+As displayed in the revised topology map, I have decided to add another virtual switch into my DS's hypervisor. The logic behind this thought process is that by separating the MPI nodes onto their own switch with a dedicated IPv4 and IPv6 subnet, I can avoid regular network traffic. This solves issues that were discussed previously regarding bandwidth contention and also avoids or even negates entirely the likelihood of packet clashing.
+
+Aside from the addition of a second virtual switch, the only other addition is the guest machines themselves. The guests are connected to both the existing virtual switch and the new, dedicated virtual switch over two 100 000 BASE-T Ethernet NICs per node. This is essentially the only major changes made to the network configuration, my philosophy being that by keeping the network fundamentally unchanged where it isn't necessary will help retain the pre-existing stability as best as possible.
+\vfill\break
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_4.png}
+    \caption{A topology diagram of my revised network configuration including a second virtual switch}
+    \label{figure_4}
+\end{figure}
+
+\section{Designing my cluster: The software design \& configurations}
+Hardware design complete, my next stage is to design the software. Software used in my project can be divided up into two subcategories: packaged software and custom software.
+
+In this document, the term packaged software expands to cover all software not written by myself, which includes the operating systems in use throughout the cluster in addition so any software running on them. Custom software will refer to any software I write to run atop OpenMPI.
+
+\textbf{\sffamily{Designing my test environment: hypervisor re-configurations \& guest considerations}}
+
+In order to have a place to install, compile, run or test software effectively I need the hypervisor to be configured correctly and optimally. Currently, large portions of my DS are configured for stability, which in some cases means utilising older firmware packages or opting for software solutions to handle certain virtualisation tasks.
+
+While this is acceptable and even recommended in production environments, in development environments, the less hindrance to performance the better the end results in most cases. To best optimise my virtual Beowulf cluster, I will apply more experimental or hardware-centric virtualisation methods where possible to deliver the best possible results during testing.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_5.png}
+    \caption{A general overview of my hypervisor architecture design}
+    \label{figure_5}
+\end{figure}
+
+My hypervisor uses KVM/Qemu for virtualisation which means it is incredibly diverse and can even emulate other CPUs and CPU architectures. While this can and, indeed, has been a feature of great usefulness to me outside of this project, it is also a potential barrier to optimal performance within this task.
+
+The solution offered by Qemu, as seen in the figure above, is passthrough mode. By enabling this flag, Qemu will avoid emulating different CPU architectures or instruction set extensions and will instead offer the full suite of hardware CPU extensions to the virtual machine with its original model number and architecture in tact. This is the fastest available CPU model within the Qemu virtualisation software as there is virtually no software interference from Qemu/KVM during code execution.
+
+In addition to making changes to the way CPUs are presented to the guest machines, I will also be ensuring the mechanisms used for other virtual hardware components have minimal software overhead on the hypervisor. For example, Qemu/KVM offers a suite of firmware packages collectively known as the VirtIO drivers which permit closer access to physical hardware from within the virtual guest.
+
+I will apply the VirtIO device types to my network adapter and virtual disk I/O bus. This should offer me maximum bandwidth between the virtual machines as well as between the virtual machines themselves and the DS RAID array. VirtIO is the only virtual network adapter type within Qemu/KVM that allows for 100 000 BASE-T Ethernet speeds.
+
+Lastly, I will also opt to use an EFI bootloader over a virtualised BIOS. While this is less relevant to performance as a whole, I still felt it was worth mentioning at the end of this subsection due to the impact it may play when hardware requests are made by a guest machine.
+
+EFIs hands more device access over to the operating system in the early stages of booting which means that they start up faster and have the ability to call directly on hardware with greater ease. While this is unlikely to make a resounding difference it at all to my test program, it could help and enabling it will do no harm otherwise.
+
+\textbf{\sffamily{Designing my test environment: A breakdown of the guest software architecture}}
+
+With the hypervisor configuration and architecture design complete, the next stage is to design my guests. Each guest will be as close as possible to a carbon copy of one-another, possible through last minute imaging of each machine from a preconfigured master. The fundamental logic behind this is, if the differences between each node in the cluster are minimised, the test can be deemed as more scientific. The same background processes should run at start up, so the systems can be gauged as more alike at startup and during operation and the same firmware should be installed to the same version numbers.
