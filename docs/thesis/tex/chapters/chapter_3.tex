@@ -89,4 +89,72 @@ EFIs hands more device access over to the operating system in the early stages o
 
 \textbf{\sffamily{Designing my test environment: A breakdown of the guest software architecture}}
 
-With the hypervisor configuration and architecture design complete, the next stage is to design my guests. Each guest will be as close as possible to a carbon copy of one-another, possible through last minute imaging of each machine from a preconfigured master. The fundamental logic behind this is, if the differences between each node in the cluster are minimised, the test can be deemed as more scientific. The same background processes should run at start up, so the systems can be gauged as more alike at startup and during operation and the same firmware should be installed to the same version numbers.
+With the hypervisor configuration and architecture design complete, the next stage is to design my guests. Each guest will be as close as possible to a carbon copy of one-another, possible through last minute imaging of each machine from a preconfigured master.
+
+The fundamental logic behind this is, if the differences between each node in the cluster are minimised, the test can be deemed as more scientific. The same background processes should run at start up, so the systems can be gauged as more alike at startup and during operation and the same firmware should be installed to the same version numbers.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_6.png}
+    \caption{A visual representation of my goal message-passing architecture}
+    \label{figure_6}
+\end{figure}
+
+The main packages I will require have already been discussed in detail, but as a recap, they are the VirtIO network device firmware, OpenSSH and the MPI runtime. Each software package will need to interact with the others, as well as with the network device firmware. Ultimately, the network device firmware will be responsible for external communications with OpenSSH being the application layer for network transactions. The MPI runtime will thus act as a translator between OpenSSH and my own custom software.
+
+With regards to my own custom software and how that communicates with the wider guest operating system, I will require the mpicc compiler (not noted in the diagram above) to compile the various hooks required by the runtime into my binary. Typically, the mpicc compiler is included in the same package as the runtime (in Arch's case, openmpi).
+\vfill\break
+
+\section{Building my custom software: A problem to test my multi-nodal network}
+In order to test my system architecture thoroughly, I am in need of a problem which can be easily divided between processes with sufficient computational expense to raise each CPU thread to its maximum throughput. The problem should also be of peer-reviewed nature in that it should use a principle already widely explored and proofed already by an external, verifiable source.
+
+In my research for a suitable problem, I discovered a few problems which might be suitable for stress testing my Beowulf cluster, but the two I will discuss here will be hashing functions and fitness optimisation functions. I will use this section to finalise this paragraph by discussing these two methods, why I've chosen one over the other and how I plan on implementing my chosen method.
+
+\textbf{\sffamily{Two methods for testing my cluster: hash functions primer \& discussion}}
+
+Cryptographic hash functions are defined as the mathematical algorithms which can `digitally verify' a data block. Specifically, it aims to create a string typically fixed in length which can uniquely represent a quantity of data such as a string, file, binary or file system.
+
+The study of what we today understand as hash functions began in the 1970s with the Diffie-Hellman (DH) method \cite{diffie_et_al_1976} which underpins modern public/private cryptography methods used to exchange data over public transmission lines such as the Internet.  In short years, Rabin \cite{rabin_1979}, Merkle \cite{merkle_1979} and Yuval \cite{yuval_1979} (amongst others) quickly built upon the DH model, offering real-world applications to the public key cryptography concept that today drives secure communications everywhere.
+
+Between the 1970s and 1990s cryptography of this kind did not see particularly wide mainstream adoption outside of specialist computing and it wasn't until the late 1990s and the major adoption of the Internet as a common data exchanging environment that caused an upsurge of DH-modelled algorithms to emerge and gain widespread usage for general cybersecurity purposes. \cite{preneel_2010}
+
+Modern hash algorithms such as the SHA-2/SHA-3 suites and EdDSA still base themselves on the original DH paradigm, where the fundamental changes are less structural and more mathematical in nature. Due to the increasing mathematical complexity required to secure systems that get faster over time, calculating hash functions using a sufficiently modern algorithm against a sufficiently large block of data should result in high CPU load for a long enough time-frame to get a strong data-set with which I can scientifically analyse.
+
+Hashing functions can therefore be seen as one potential method of benchmarking a cluster, especially when one considers how susceptible many hashing algorithms are to parallelism. However, hashing functions are notoriously difficult to write so I would more likely than not need to find and utilise source code to compile my own hashing binary which is compatible with the MPI runtime. This would in turn require me modifying existing source code to contain MPI hooks and functions.
+
+For the context of this degree-level dissertation, I think that a hashing function would likely incur too much complexity to be completed within a reasonable time-frame. I am therefore going to review my options and look down a different avenue of research.
+
+\textbf{\sffamily{Two methods for testing my cluster: fitness optimisation functions primer \& discussion}}
+
+Fitness optimisation functions are ubiquitous in genetic programming as a way of testing how good a specific algorithm is at locating an optimal solution. Numerous fitness functions exist, however the most popular include the Rastrigin function, Ackley function, Rosenbrock function, Himmelblau's function and Eggholder function.
+
+The main goal of fitness optimisation functions is to benchmark a genetic algorithm's performance against either other similar methods or improvements on an existing method. Every individual fitness function therefore has a different design and purpose in mind and offers different search-space constraints and granularity. To understand how fitness optimisation functions work, I will look briefly into two different methods, namely the Ackley and Eggholder functions.
+
+The Ackley function \cite{ackley_1987} is a two-dimensional optimisation first conceived by David Ackley in 1987. It has a search space ranging between -5 and 5 and a global minima at \{ 0,0 \}. When visibly rendered on a three-dimensional plot, it assumes a funnel-like shape with peaks and troughs lining the fabric of the search space leading towards the centre of the grid.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_7.png}
+    \caption{A visual representation of the Ackley function \cite{surjanovic_2017}}
+    \label{figure_7}
+\end{figure}
+
+It is these peaks and troughs optimisation algorithms come unstuck with and it is precisely this characteristic that mathematicians hunt for in their efforts to form fitness functions. In the case of my software, in order to maximise results I hope to do the opposite of optimisation and actually add computational expense to the software rather than reduce it.
+
+I will now take a brief look into a different function, the Eggholder.
+
+The Eggholder function aims to fulfil fundamentally the same niche as Ackley's function did by providing a search space that contains a high volume of local minima in a comparatively small search space. In the case of the Eggholder, its search space is much larger than Ackley's with bounds between -512 and 512 with a general optima of -959{,}6407 at \{512, 404.2319\}.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_8.png}
+    \caption{A visual representation of the Eggholder function \cite{surjanovic2_2017}}
+    \label{figure_8}
+\end{figure}
+
+Visually, Eggholder takes on a much wilder appearance than Ackley's function does. This makes it a lot tougher on optimisation techniques due to the heightened probability of getting trapped. While this doesn't necessarily convert to higher computational expense under my requirements, it does offer a larger search space which should provide deeper problem precision for me to exploit.
+
+Unfortunately, despite heavy research, I have been unable to discover the origins of the Eggholder function. All my information, including the equation and visual models have to therefore come from Vanaret's work at the Université de Toulouse \cite{vanaret_2015}.
+
+To test my cluster, I will be utilising the Eggholder function. I intend on searching the full search-space at all times, adapting the precision to increase or decrease computational expense. This, combined with increasing and decreasing the node count will give me a suitable data-set with which I can scientifically analyse.
+
+\textbf{\sffamily{Implementing a fitness optimisation function: My intended plan of attack}}
+
+1

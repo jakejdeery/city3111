@@ -23,7 +23,6 @@ Unfortunately, during my feasibility study, I have found that using Raspberry Pi
 \textbf{\sffamily{A compromise: Utilising a DS}}
 
 To complete my cluster, I have ended up needing to utilise hardware existing to me. To this end, I have decided to use my Dell PowerEdge R710 featuring 2 x Intel Xeon CPU X5660 @ 2,80GHz with 96 GB of DDR3 ECC memory. This system also has four 1 000 BASE-T Ethernet ports making it suitable for external management. I will run five guests within my hypervisor in order to simulate a good range of loads on my dedicated server (DS).
-\vfill\break
 
 Using a production server comes with its own set of challenges. How do you balance the resource requirements of other virtual guests in order to maintain a fair test? How can you ensure all systems communicate fairly (i.e. one system isn't getting priority CPU or network time)? Are there any additional considerations required when designing such a system? Try try and answer those questions, I'd like to express how I intend on mitigating and adapting the load on my server machine while operating the program and cluster.
 
