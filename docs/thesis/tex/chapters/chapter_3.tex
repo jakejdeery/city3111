@@ -153,8 +153,31 @@ Visually, Eggholder takes on a much wilder appearance than Ackley's function doe
 
 Unfortunately, despite heavy research, I have been unable to discover the origins of the Eggholder function. All my information, including the equation and visual models have to therefore come from Vanaret's work at the Université de Toulouse \cite{vanaret_2015}.
 
-To test my cluster, I will be utilising the Eggholder function. I intend on searching the full search-space at all times, adapting the precision to increase or decrease computational expense. This, combined with increasing and decreasing the node count will give me a suitable data-set with which I can scientifically analyse.
+To test my cluster, I will be utilising the Eggholder function. I intend on searching the full search-space at all times, introducing nodes one by one to measure performance change as process counts increase. This will give me a suitable data-set with which I can scientifically analyse.
+\vfill\break
 
 \textbf{\sffamily{Implementing a fitness optimisation function: My intended plan of attack}}
 
-1
+In order to create a piece of software which satisfies all the requirements while using the Eggholder function, I need to design with brute forcing in mind. In short, brute-forcing a fitness optimisation function differs from the function's intended purpose in that with an optimisation method one would aim to find the best optima as quickly as possible. In brute-forcing, the goal is to check every point on a grid given certain boundaries and precision values.
+
+Eggholder allows for incredibly high precision (to confidently locate the global optima one would need to run approx. 26 214 400 000 000 calculations of the function's equation). If one was to take leverage of this function's complexity in conjunction with proper job division, a true parallel system in MPI could be achieved.
+
+My plan in designing this system is to use a hybrid-master slave system on all nodes, rather than relying on job dividing and distribution using a centralised architecture. I believe using this design principle will simplify my codebase as well as speed up my cluster. If each node can compute its own problem bunch without external influence, bandwidth and computational expense is reduced.
+
+If possible, MPI should only be responsible for two tasks. First and foremost, MPI should indeed be responsible for runtime management which includes process spawning and communications (`world management'). Secondly, MPI should facilitate the passing of results and only results from all nodes back to the parent (i.e. node 0). It is also worth noting that the combining of results from child nodes should be the only time the parent node is seen as the master.
+\vfill\break
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=55mm]{CITY3111/bitmaps/figure_9.png}
+    \caption{UML diagram of my intended software architecture}
+    \label{figure_9}
+\end{figure}
+
+As illustrated above, most of the process is handled internally by the individual processes. I hope that by utilising this design it is ensured that any reduction in speedups seen are purely based on hardware-induced granularity rather than avoidable network delays. Another feature worth noting in my design is message simplification by design. Rather than sending messages to the master every time a new best fit is found, each new best fit is stored in the node's own individual memory space. The best fit is sent back to the master at the end of the process before being compared against and stored or discarded depending on its quality comparable to prior results received.
+
+The last two aspects of my design I intend on discussing are measurability and verbosity. Addressing the former first, I intend on measuring only one metric, that being time taken to complete the job. This can be achieved using a chrono clock in C++, most likely placed immediately before and after the loop responsible for the brute force process. By measuring the time taken to complete the job on the master, I will hopefully get a suitably accurate representation of how the process speeds change across the cluster as job sizes shrink with each new node.
+
+Addressing verbosity, I plan on presenting several information points to help measure the inner-workings of my program. These values are as follows: computational effort per node, approximate cluster effort, delta time for master node (as discussed), the best fit, the best fit location and the node which located the best fit.
+
+Hopefully with this design I can achieve my goal set forth in Chapter 1. In the following chapter, I will explain how I go about implementing this project, including a breakdown of the hardware setup, software installation, creation and testing as well as a discussion on any problems that arise.
