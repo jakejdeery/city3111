@@ -15,13 +15,13 @@ CND_PACKAGE_DIR_Debug=dist/Debug/MPICC-Linux/package
 CND_PACKAGE_NAME_Debug=city3111.tar
 CND_PACKAGE_PATH_Debug=dist/Debug/MPICC-Linux/package/city3111.tar
 # Release configuration
-CND_PLATFORM_Release=GNU-Linux
-CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
+CND_PLATFORM_Release=MPICC-Linux
+CND_ARTIFACT_DIR_Release=dist/Release/MPICC-Linux
 CND_ARTIFACT_NAME_Release=city3111
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/city3111
-CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
+CND_ARTIFACT_PATH_Release=dist/Release/MPICC-Linux/city3111
+CND_PACKAGE_DIR_Release=dist/Release/MPICC-Linux/package
 CND_PACKAGE_NAME_Release=city3111.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/city3111.tar
+CND_PACKAGE_PATH_Release=dist/Release/MPICC-Linux/package/city3111.tar
 #
 # include compiler specific variables
 #

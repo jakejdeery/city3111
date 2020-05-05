@@ -75,10 +75,6 @@ float64_t opClass::doSearch(float64_t precision) {
 	
 	// calculating current bunches -- re-adjust last process to cover entire range
 	if(worldRank == cWorldSize) endBound += precision;
-	
-	// calculate problem chunk
-	cout << "[" << worldRank << "]" << "startBound == " << startBound << "\n";
-	cout << "[" << worldRank << "]" << "endBound == " << endBound << "\n";
 
 	// declaare start of search
 	if(worldRank == 0) cout << "\n[I] Starting op search . . . " << flush;
