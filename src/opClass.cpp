@@ -46,47 +46,67 @@ float64_t opClass::getFit(float64_t x, float64_t y) {
 	return fit;
 }
 
-float64_t opClass::doSearch(float64_t startBound, float64_t endBound, float64_t precision) {
+float64_t opClass::doSearch(float64_t precision) {
+	// consts
+	const float64_t defaultStartBound = -512.0;
+	const float64_t defaultEndBound = 512.0;
+	const float64_t defaultBoundRange = 1024.0; // abs(512.0 - (-512.0))
+	const float64_t cWorldSize = worldSize - 1.0;
+	
 	// vars
-    float64_t boundRange = abs(startBound - endBound);
-    float64_t bestFit[3];
-	uint64_t bestRank = 0;
-    uint64_t effort = 0;
-    uint64_t bunchSize = 0;
-    uTimeOut deltaTime;
+	float64_t startBound = 0;
+	float64_t endBound = 0;
+	float64_t bestFit[3];
+	float64_t bestRank = 0.0;
+	float64_t effort = 0.0;
+	float64_t bunchSize = 0.0;
+	uTimeOut deltaTime;
 
 	// defines
-	bunchSize = boundRange / worldSize;
-	startBound = startBound + (bunchSize * worldRank);
-	endBound = endBound - (bunchSize  * ((worldSize - 1) - worldRank)); // these bounds overlap, but that's okay
+	bunchSize = defaultBoundRange / worldSize;
+	
+	// begin calculating current bunches -- basic
+	startBound = defaultStartBound + (bunchSize * worldRank);
+	endBound = startBound + bunchSize;
+	
+	// calculating current bunches -- fix for precision to avoid overlap
+	if(endBound < 0) endBound += precision;
+	else if(endBound == 0 || endBound > 0) endBound -= precision;
+	
+	// calculating current bunches -- re-adjust last process to cover entire range
+	if(worldRank == cWorldSize) endBound += precision;
+	
+	// calculate problem chunk
+	cout << "[" << worldRank << "]" << "startBound == " << startBound << "\n";
+	cout << "[" << worldRank << "]" << "endBound == " << endBound << "\n";
 
 	// declaare start of search
-	if(worldRank == 0) cout << "[I] Starting op search . . . " << flush;
+	if(worldRank == 0) cout << "\n[I] Starting op search . . . " << flush;
 
 	//
 	// main for loop
-
-    // getting time
-    auto startTime = uTimeGet::now();
+	
+	// getting time
+	auto startTime = uTimeGet::now();
 
 	for(float64_t x = startBound; x < endBound + precision; x += precision) {
 		for(float64_t y = startBound; y < endBound + precision; y += precision) {
 			float64_t fitness = getFit(x,y);
 
 			if(fitness < bestFit[2]) {
-                bestFit[0] = x;
-                bestFit[1] = y;
-                bestFit[2] = fitness;
+				bestFit[0] = x;
+				bestFit[1] = y;
+				bestFit[2] = fitness;
 			};
 
 			// effort counter
 			effort++;
 		}
 	}
-
-    // end and calculate time
-    auto endTime = uTimeGet::now();
-    deltaTime = endTime - startTime;
+	
+	// end and calculate time
+	auto endTime = uTimeGet::now();
+	deltaTime = endTime - startTime;
 	
 	// alert done
 	if(worldRank == 0) cout << "done" << "\n";
@@ -100,7 +120,7 @@ float64_t opClass::doSearch(float64_t startBound, float64_t endBound, float64_t 
 		for(uint64_t i = 0; i < (worldSize - 1); i++) { // -1 because we have already stored data from proc#0
 			// vars
 			float64_t currentFit[3];
-            uint64_t currentRank = 0;
+			uint64_t currentRank = 0;
 
 			// wait for news
 			MPI_Recv(&currentFit[0], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
@@ -116,10 +136,10 @@ float64_t opClass::doSearch(float64_t startBound, float64_t endBound, float64_t 
 				bestRank = currentRank;
 			}
 		}
-
+		
 		cout << "[I] Each process ran through approx. " << effort << " loops each" << "\n";
-        cout << "[I] The program ran through approx. " << effort * worldSize << " loops in total" << "\n";
-        cout << "[I] This took approx. " << deltaTime.count() << " ms per process" << "\n";
+		cout << "[I] The program ran through approx. " << effort * worldSize << " loops in total" << "\n";
+		cout << "[I] This took approx. " << deltaTime.count() << " ms per process" << "\n";
 		cout << "[I] The best fit was " << bestFit[2] << " at {" << bestFit[0] << ";" << bestFit[1] << "}" << "\n";
 		cout << "[I] The best fit was found by process " << bestRank + 1 << " of " << worldSize << "\n";
 		cout << "\n";

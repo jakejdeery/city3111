@@ -1,4 +1,5 @@
 // opClass.h, jake deery, 2020
+#pragma once
 #ifndef OPCLASS_H
 #define OPCLASS_H
 
@@ -26,7 +27,7 @@ public:
 	// public methods
 	opClass();
 	~opClass();
-	float64_t doSearch(float64_t startBound, float64_t endBound, float64_t precision);
+	float64_t doSearch(float64_t precision);
 
 	// publics vars
 	
@@ -36,7 +37,7 @@ private:
 
 	// private vars
 	int32_t worldSize = 0;
-    int32_t worldRank = 0;
+	int32_t worldRank = 0;
 };
 
 #endif /* OPCLASS_H */

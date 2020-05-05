@@ -1,3 +1,0 @@
-/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/CMakeFiles/rebuild_cache.dir
-/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/CMakeFiles/city3111.dir
-/home/axessta/CLionProjects/city3111/cmake-build-release-mpi/CMakeFiles/edit_cache.dir
