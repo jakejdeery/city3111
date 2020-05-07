@@ -1,0 +1,8 @@
+[root@CITY3111-VM1 ~]# pacman -Syuu
+:: Synchronising package databases...
+ core is up to date
+ extra is up to date
+ community is up to date
+ multilib is up to date
+:: Starting full system upgrade...
+ there is nothing to do

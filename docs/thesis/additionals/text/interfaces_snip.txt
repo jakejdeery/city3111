@@ -1,0 +1,29 @@
+[...]
+auto vmbr0
+iface vmbr0 inet static
+	address  172.16.1.1
+	netmask  16
+	gateway  172.16.0.1
+	bridge-ports bond0
+	bridge-stp off
+	bridge-fd 0
+#INET
+
+iface vmbr0 inet6 static
+	address  2001:470:1f1d:ef5:1::1
+	netmask  64
+	gateway  2001:470:1f1d:ef5::1
+
+auto vmbr1
+iface vmbr1 inet static
+	address  192.168.56.1
+	netmask  24
+	bridge-ports none
+	bridge-stp off
+	bridge-fd 0
+#LOC
+
+iface vmbr1 inet6 static
+	address  2001:56::1
+	netmask  64
+[...]

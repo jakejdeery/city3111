@@ -1,0 +1,3 @@
+[root@CITY3111-VM1 ~]# nano /etc/shadow
+root:*:18326::::::
+[...]

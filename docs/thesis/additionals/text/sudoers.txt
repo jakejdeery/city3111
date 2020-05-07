@@ -1,0 +1,7 @@
+[root@CITY3111-VM1 ~]# nano /etc/sudoers
+[...]
+
+## Uncomment to allow members of group wheel to execute any command
+%wheel ALL=(ALL) ALL ## was previously commented
+
+[...]

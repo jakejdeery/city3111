@@ -2,3 +2,124 @@
 \cleardoublepage
 \phantomsection
 \chapter{Implementation and Testing}
+Design complete with research in hand, I am now ready to begin implementation. I intend on completing this process in three distinct stages: virtual hardware creation \& configuration, guest software configuration and lastly custom software creation.
+
+I expect the first two stages should complete without much upset and can probably done in a nonrepetative fashion for the most part. The last stage has additional sufficient complexity and uniqueness that leads me to conclude this part of the process will almost definitely end up being considerably more iterative in nature.
+
+Once implementation has been achieved, I will test my system by running my program multiple times under increasing node counts. This process will be outlined in more detail in the second section of this chapter.
+
+\section{Implementing a Beowulf cluster: Configuring and preparing}
+
+\textbf{\sffamily{Setting up and configuring the virtual switch \& nodes}}
+
+The first step I am taking in setting up and configuring my cluster is hardware preparation. Specifically, I need to make sure the network stack on the hypervisor is up to the task I will be setting for it. As set forth in my design document, the Beowulf cluster I am building will have its own dedicated switch away from the main home network to reduce packet impedance and collision.
+
+To configure a second virtual switch on my hypervisor, I will need to modify the interfaces file found in the Debian file system running on the host. Within, I am adding a carbon copy block from the original virtual switch (`bridge').
+
+\lstinputlisting[numbers=right,breaklines=true,tabsize=2,language=]{CITY3111/additionals/text/interfaces_snip.txt}
+\begin{center}
+    \emph{Live snip from my interfaces file}
+\end{center}
+\vfill\break
+
+The only major changes one can see between the original virtual switch (`vmbr0') and the new virtual switch (`vmbr1`) are the changes in the address subnets used between switches and the absence of a physical network port or gateway on the new switch as these features are not required in this particular usecase.
+
+After a reboot, the hypervisor will recognise and auto-configure the network switch and make it available for use. When it comes to configuring the virtual machines, the only step that will be required is to configure the preconfigured virtual network interface cards (NICs) to use an IP on the same subnet as the host. Routing will be handled by the RIP protocol without additional instruction.
+
+Network configuration complete, the other step required in the virtual hardware configuration stage is to create the virtual guests. In Proxmox VE, this is completed within the GUI.
+
+On creation of a virtual machine, both in Proxmox VE and most other hypervisors, a wizard presents itself to step the user though various configuration options. This is ideal for my usecase as I can use the options decided upon during the design stage of this project to optimise my cluster for performance.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_10.png}
+    \caption{Screenshot of guest OS hardware configuration}
+    \label{figure_10}
+\end{figure}
+
+As seen in the screenshot above, the end configuration is geared as best as it possibly can be for optimum performance. All network adaptors and drives are connected to the VirtIO bus, a generous memory count has been allocated and an up-to-date BIOS and chipset is being simulated.
+
+With the primary node configured, cloning of the configuration is completed by using the hypervisor's build-in cloning tool. Hard disk cloning will be done at a later point once the operating system has been fully configured and is ready for the custom software package.
+
+\textbf{\sffamily{Setting up and configuring the guest OS: Setup}}
+
+With my virtual guest machine booted and confirmed functional, the next stage was to install Manjaro using the Architect installer. Manjaro's Architect installer allows full customisation over what packages and features get installed to the system initially. To avoid bloat, I will be keeping the master image as minimal as possible.
+
+On initial boot of the ISO, I am presented a series of questions including what timezone I wish to use, the language and keyboard settings I wish to use and the driver suite I would like to choose. Naturally, regional questions will be set to British English in this case and require no further explanation, however the driver suite I want to use is worth additional discussion.
+
+Linux drivers typically tend to what are referred to as `free' drivers. Free drivers are any drivers that are based wholly on free and open-source software (FOSS). As a FOSS OS, Linux usually has a free driver for every major brand and kind of PC hardware available and in my system this is no exception. The only hardware that might be unusual in this virtual environment is the VirtIO suite of devices.
+
+Upon deeper inspection of the VirtIO device suite, it has become apparent to me that it is in fact part of the Linux KVM module which is in turn included in the Linux kernel. Source code is available via the Linux kernel repositories. This means that I can boot with free drivers and not lose functionality or performance in my system. Addendum to that, the Spice GPU and driver are not fundamental to the performance of a CLI-based OS and can be suitably supported by the basic Linux video driver suite.
+
+Once the system has been booted, the installer automatically starts a shell with root permissions. My first job is to populate pacman's key-ring and launch the setup process. To do this, I ran three commands listed below.
+
+\lstinputlisting[numbers=left,breaklines=true,tabsize=2,language=]{CITY3111/additionals/text/setup-launch.txt}
+\begin{center}
+    \emph{Pre-setup commands}
+\end{center}
+
+Within the setup, I am met with numerous options, many of which do not necessarily apply to me. To keep this write-up as simple as possible I will explain only the steps that apply to me, starting with disc partitioning. Architect offers automatic partitioning as a preparatory option, however this involves creating a swap drive which, once configured, is difficult to modify.As I have mentioned, I may want to modify the amount of RAM I allocate to each of my nodes. This is much easier to do by creating a swap file on the root partition instead.
+
+My best option is therefore to create my own partition table using the `cgdisk' utility. My partition table needs to account for an EFI boot volume, of which I will allocate 35 MB of space for. The rest of the disc becomes my root partition where the operating system will reside.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_11.png}
+    \caption{Screenshot of completed `cgdisk' process}
+    \label{figure_11}
+\end{figure}
+
+Partition table created and file systems applied, the next step is to mount the partitions at their correct locations prior to installation. Architect has a wizard which helps with this process, all I am required to do is carefully ensure I select the correct mount points for the relevant volumes. The same wizard has also allowed me to create a swapfile on the root partition and has added it to the `/etc/fstab' file which manages partition mounting on boot.
+
+With the hard discs ready, I am in a position to begin the installation process for Manjaro. Before I can start customising my setup however, I need to install the base packages. The wizard process for this step asks some basic questions such as which kernels to use and what development packages you would like if required. For this stage, I chose the latest stable kernel (v5,4) and the base-devel package for installation. I also chose to install kernel-headers with free drivers. This whole process took approximately two minutes.
+
+After completing the base system installation, I'm now ready to install a bootloader. This step is mandatory if I want to be able to boot the operating system once I am finished with setup. Architect offers the `refind' bootloader typically used to install Linux on older Mac machines as well as the `systemd-boot' module, however most Linux installations nowadays use the `grub2' bootloader as it is well-developed and ``just works''. This is the option I am choosing.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_12.png}
+    \caption{Screenshot of base configuration menu}
+    \label{figure_12}
+\end{figure}
+
+Once the bootloader is installed, the final stage in Architect's setup process I will be making use of is the base configuration. These steps, supposedly meant to be done in order, will prepare the system for general usage. While most of these steps are unimportant, there are three specific steps which I need to discuss.
+
+The first, the system host-name, will henceforth become `CITY3111-VM\emph{n}' where \emph{n} represents the node number one-counting. This value will be important going forward, and will ultimately end up being unique per-system. Without this value being correctly configured or non-unique on the network, inter-nodal communications will be impossible.
+
+The second step is setting the root password. I will need to set this to something secure as the root user ultimately has full power in Linux to do as it pleases. Once my regular user has sufficient super user access, I will disable logon to root with a password for security reasons.
+
+The final step I am configuring is a new user account. Creating a user account on Architect is slightly more involved than just setting the password on root as it requires a decision on the user shell in use. While `bash' is the typical Linux shell, `zsh' is gaining popularity on other UNIX and UNIX-like OSes. I have experience using `zsh' so this is the shell I am choosing. After entering a password, setup informs me the user is ready for use on the next boot.
+
+\begin{figure}[H]
+    \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_13.png}
+    \caption{Screenshot of fully booted Manjaro system}
+    \label{figure_13}
+\end{figure}
+
+Rebooting concludes the setup portion of this section, where I have installed Manjaro using minimal settings via the Architect setup and configured a user for login. The next stage is to install the packages I need and configure the system so it is suitable for use with any custom software I wish to write and compile.
+
+\textbf{\sffamily{Setting up and configuring the guest OS: Configuration}}
+
+With my guest OS installed and booted and my root user logged in, the first step I need to undertake is a full OS upgrade check. This process is handled by Manjaro's package manager, `pacman'. The -Syuu flag will synchronise the system's package database with the package database found at the nearest Manjaro mirror and offer to install any upgrades found.
+
+\lstinputlisting[numbers=right,breaklines=true,tabsize=2,language=]{CITY3111/additionals/text/pacman-syuu.txt}
+\begin{center}
+    \emph{Output of the `pacman -Syuu' command}
+\end{center}
+
+As is typical with fresh installs of many Linux distros, the system was already up-to-date, however it is still best practice to ensure the local database is in sync with the local mirror to greatly reduce the likelihood of attempting to get an out-of-date package. Going forward, I will install packages only using the `-S' flag with pacman to speed up the sync process.
+
+Package database up-to-date, I am ready to begin installing software. The very first package I want to install is `sudo' which allows for protected super user access from non-root users. Sudo is considered more secure than consistent use of the root user as it only affords the target process elevation rather than the entire session. To install this, I ran `pacman -S sudo'.
+
+With `sudo' installed, the last two steps in allowing my user super user access are to add my user to the `wheel' group and allow said group sudo access. To begin with, I add my user to the group by running `usermod -a -G wheel axessta'. With the user now in the required group, I lastly modify the `/etc/sudoers' group using the `nano' command.
+
+\lstinputlisting[numbers=left,breaklines=true,tabsize=2,language=]{CITY3111/additionals/text/sudoers.txt}
+\begin{center}
+    \emph{Snipped contents of the `/etc/sudoers' file}
+\end{center}
+
+Once this step has been completed, I can test my user's permissions by logging out of the system and back in with the regular user. If the process has been completed successfully, I should be able to edit the `/etc/shadow' file using `sudo nano /etc/shadow'. I found the `usermod' command to be unreliable, and it took several runs for the system to register my user as a sudoer. I am unsure if this issue is directly related to `usermod' or if `sudo' incurs a delay either through a bug or by design, however eventually this process worked and I could modify the root user.
+
+With functional sudo access, password-based login to the root user is no longer a desirable trait of my operating system so I wish to disable it. To do so, I need to delete the text hash for my root's user and replace it with an asterisk. In Linux's `shadow' authentication process, an asterisk is seen as an active user without password privileges, while an exclamation point is seen as a disabled user, double-exclamation point as a blocked user and a blank field as password-free access. For my purposes, an asterisk is suitable as there may be times I still want to access the root user using `sudo su root'.
+
+\lstinputlisting[numbers=right,breaklines=true,tabsize=2,language=]{CITY3111/additionals/text/shadow.txt}
+\begin{center}
+    \emph{Snipped contents of the `/etc/shadow' file}
+\end{center}

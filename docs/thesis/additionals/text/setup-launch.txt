@@ -1,0 +1,11 @@
+# pacman-key --init
+
+# pacman-key --populate
+[...]
+gpg: next trustdb check due at 2020-03-31
+
+# setup
+updating the installer...
+[...]
+
+[Setup has now launched]

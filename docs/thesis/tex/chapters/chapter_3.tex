@@ -25,7 +25,7 @@ My ISP does not currently feature IPv6 support, however my network does. This wi
 
 Moving downwards toward the on-premise equipment, I have three separate network devices outside of the DS: the edge gateway device, the physical switch and my personal computer Saren. Firstly, the edge gateway manages communications between all internal devices and the internet with a LAN subnet of 192.168.0.0/24. The physical switch operates on layer 2 of the OSI model and facilitates communications between any physical devices on my network not connecting via the edge gateway's built-in Wi-Fi access point.
 
-Lastly, my PC, Saren, will be used to oversee operations and issue commands to both the physical hardware on my network and the virtualised components found on my DS. I will achieve this by using a combination of the Proxmox VE web interface to manage the virtual hardware, Virt-Viewer to directly interact with the console of each individual guest OS and SSH to access teletype sessions on each system once they are fully configured.
+Next, my PC, Saren, will be used to oversee operations and issue commands to both the physical hardware on my network and the virtualised components found on my DS. I will achieve this by using a combination of the Proxmox VE web interface to manage the virtual hardware, Virt-Viewer to directly interact with the console of each individual guest OS and SSH to access teletype sessions on each system once they are fully configured.
 
 Finally reaching the DS itself, this is where the nuts and bolts of the operation come into life. Within the DS there is another, much faster virtual switch which is used to virtually connect all of my guest OSes together. This virtual switch also has direct access to the physical NICs on the server to facilitate external communications.
 
@@ -77,15 +77,18 @@ While this is acceptable and even recommended in production environments, in dev
 
 My hypervisor uses KVM/Qemu for virtualisation which means it is incredibly diverse and can even emulate other CPUs and CPU architectures. While this can and, indeed, has been a feature of great usefulness to me outside of this project, it is also a potential barrier to optimal performance within this task.
 
-The solution offered by Qemu, as seen in the figure above, is passthrough mode. By enabling this flag, Qemu will avoid emulating different CPU architectures or instruction set extensions and will instead offer the full suite of hardware CPU extensions to the virtual machine with its original model number and architecture in tact. This is the fastest available CPU model within the Qemu virtualisation software as there is virtually no software interference from Qemu/KVM during code execution.
+The solution offered by Qemu, as seen in the figure above, is passthrough mode. By enabling this flag, Qemu will avoid emulating different CPU architectures or instruction set extensions and will instead offer the full suite of hardware CPU extensions to the virtual machine with its original model number and architecture in tact. This is the fastest available CPU model within the Qemu virtualisation software as there is virtually no software interference from Qemu/KVM during code execution. I will pass through a single core per node from each socket, offering load-balancing across both CPUs to minimise overall time requirements on the processors.
 
 In addition to making changes to the way CPUs are presented to the guest machines, I will also be ensuring the mechanisms used for other virtual hardware components have minimal software overhead on the hypervisor. For example, Qemu/KVM offers a suite of firmware packages collectively known as the VirtIO drivers which permit closer access to physical hardware from within the virtual guest.
 
 I will apply the VirtIO device types to my network adapter and virtual disk I/O bus. This should offer me maximum bandwidth between the virtual machines as well as between the virtual machines themselves and the DS RAID array. VirtIO is the only virtual network adapter type within Qemu/KVM that allows for 100 000 BASE-T Ethernet speeds.
 
+As the system has 96GB of RAM available, I will present the full 4GB of RAM found on the reference hardware, the Raspberry Pi. While software requirements should not exceed that figure per node, it is a trivial task to allocate more memory to the virtual guests if it is so required.
+
 Lastly, I will also opt to use an EFI bootloader over a virtualised BIOS. While this is less relevant to performance as a whole, I still felt it was worth mentioning at the end of this subsection due to the impact it may play when hardware requests are made by a guest machine.
 
 EFIs hands more device access over to the operating system in the early stages of booting which means that they start up faster and have the ability to call directly on hardware with greater ease. While this is unlikely to make a resounding difference it at all to my test program, it could help and enabling it will do no harm otherwise.
+\vfill\break
 
 \textbf{\sffamily{Designing my test environment: A breakdown of the guest software architecture}}
 
@@ -102,7 +105,6 @@ The fundamental logic behind this is, if the differences between each node in th
 The main packages I will require have already been discussed in detail, but as a recap, they are the VirtIO network device firmware, OpenSSH and the MPI runtime. Each software package will need to interact with the others, as well as with the network device firmware. Ultimately, the network device firmware will be responsible for external communications with OpenSSH being the application layer for network transactions. The MPI runtime will thus act as a translator between OpenSSH and my own custom software.
 
 With regards to my own custom software and how that communicates with the wider guest operating system, I will require the mpicc compiler (not noted in the diagram above) to compile the various hooks required by the runtime into my binary. Typically, the mpicc compiler is included in the same package as the runtime (in Arch's case, openmpi).
-\vfill\break
 
 \section{Building my custom software: A problem to test my multi-nodal network}
 In order to test my system architecture thoroughly, I am in need of a problem which can be easily divided between processes with sufficient computational expense to raise each CPU thread to its maximum throughput. The problem should also be of peer-reviewed nature in that it should use a principle already widely explored and proofed already by an external, verifiable source.
@@ -122,6 +124,7 @@ Modern hash algorithms such as the SHA-2/SHA-3 suites and EdDSA still base thems
 Hashing functions can therefore be seen as one potential method of benchmarking a cluster, especially when one considers how susceptible many hashing algorithms are to parallelism. However, hashing functions are notoriously difficult to write so I would more likely than not need to find and utilise source code to compile my own hashing binary which is compatible with the MPI runtime. This would in turn require me modifying existing source code to contain MPI hooks and functions.
 
 For the context of this degree-level dissertation, I think that a hashing function would likely incur too much complexity to be completed within a reasonable time-frame. I am therefore going to review my options and look down a different avenue of research.
+\vfill\break
 
 \textbf{\sffamily{Two methods for testing my cluster: fitness optimisation functions primer \& discussion}}
 
@@ -136,6 +139,7 @@ The Ackley function \cite{ackley_1987} is a two-dimensional optimisation first c
     \caption{A visual representation of the Ackley function \cite{surjanovic_2017}}
     \label{figure_7}
 \end{figure}
+\vfill\break
 
 It is these peaks and troughs optimisation algorithms come unstuck with and it is precisely this characteristic that mathematicians hunt for in their efforts to form fitness functions. In the case of my software, in order to maximise results I hope to do the opposite of optimisation and actually add computational expense to the software rather than reduce it.
 
@@ -154,7 +158,6 @@ Visually, Eggholder takes on a much wilder appearance than Ackley's function doe
 Unfortunately, despite heavy research, I have been unable to discover the origins of the Eggholder function. All my information, including the equation and visual models have to therefore come from Vanaret's work at the Université de Toulouse \cite{vanaret_2015}.
 
 To test my cluster, I will be utilising the Eggholder function. I intend on searching the full search-space at all times, introducing nodes one by one to measure performance change as process counts increase. This will give me a suitable data-set with which I can scientifically analyse.
-\vfill\break
 
 \textbf{\sffamily{Implementing a fitness optimisation function: My intended plan of attack}}
 
@@ -165,7 +168,6 @@ Eggholder allows for incredibly high precision (to confidently locate the global
 My plan in designing this system is to use a hybrid-master slave system on all nodes, rather than relying on job dividing and distribution using a centralised architecture. I believe using this design principle will simplify my codebase as well as speed up my cluster. If each node can compute its own problem bunch without external influence, bandwidth and computational expense is reduced.
 
 If possible, MPI should only be responsible for two tasks. First and foremost, MPI should indeed be responsible for runtime management which includes process spawning and communications (`world management'). Secondly, MPI should facilitate the passing of results and only results from all nodes back to the parent (i.e. node 0). It is also worth noting that the combining of results from child nodes should be the only time the parent node is seen as the master.
-\vfill\break
 
 \begin{figure}[H]
     \centering
