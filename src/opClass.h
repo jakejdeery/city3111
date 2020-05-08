@@ -28,13 +28,13 @@ public:
 	opClass();
 	~opClass();
 	float64_t doSearch(float64_t precision);
-
+	
 	// publics vars
 	
 private:
 	// private methods
 	float64_t getFit(float64_t x, float64_t y);
-
+	
 	// private vars
 	int32_t worldSize = 0;
 	int32_t worldRank = 0;

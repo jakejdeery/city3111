@@ -82,29 +82,26 @@ float64_t opClass::doSearch(float64_t precision) {
 	// set y-bounds to cover entire range
 	startYBound = -512.0;
 	endYBound = 512.0;
-
+	
 	// declaare start of search
 	if(worldRank == 0) cout << "\n[I] Starting op search . . . " << flush;
 	
-	cout << worldRank << " " << startXBound << "\n";
-	cout << worldRank << " " << endXBound << "\n" << "\n";
-
 	//
 	// main for loop
 	
 	// getting time
 	auto startTime = uTimeGet::now();
-
+	
 	for(float64_t x = startXBound; x < endXBound + precision; x += precision) { // x = limited
 		for(float64_t y = startYBound; y < endYBound + precision; y += precision) { // y = do whole search-space
 			float64_t fitness = getFit(x,y);
-
+			
 			if(fitness < bestFit[2]) {
 				bestFit[0] = x;
 				bestFit[1] = y;
 				bestFit[2] = fitness;
 			};
-
+			
 			// effort counter
 			effort++;
 		}
@@ -119,26 +116,25 @@ float64_t opClass::doSearch(float64_t precision) {
 	
 	// alert done
 	if(worldRank == 0) cout << "done" << "\n";
-
+	
 	//
 	// main system echo
 	if(worldRank == 0) {
-
-
+		
 		// for loop for slave messages
 		for(uint64_t i = 0; i < (worldSize - 1); i++) { // -1 because we have already stored data from proc#0
 			// vars
 			float64_t currentFit[3];
 			float64_t currentEffort = 0.0;
 			uint64_t currentRank = 0;
-
+			
 			// wait for news
 			MPI_Recv(&currentFit[0], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 			MPI_Recv(&currentFit[1], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 1, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 			MPI_Recv(&currentFit[2], 1, MPI_DOUBLE, MPI_ANY_SOURCE, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 			MPI_Recv(&currentEffort, 1, MPI_DOUBLE, MPI_ANY_SOURCE, 3, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 			MPI_Recv(&currentRank, 1, MPI_INT, MPI_ANY_SOURCE, 4, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-
+			
 			// if the received values are the best, keep them
 			if(currentFit[2] < bestFit[2]) {
 				bestFit[0] = currentFit[0];
@@ -165,7 +161,7 @@ float64_t opClass::doSearch(float64_t precision) {
 		MPI_Send(&effort, 1, MPI_DOUBLE, 0, 3, MPI_COMM_WORLD);
 		MPI_Send(&worldRank, 1, MPI_INT, 0, 4, MPI_COMM_WORLD);
 	}
-
+	
 	// end process
 	return 0;
 }
