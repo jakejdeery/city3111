@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# sudo warning
+echo Please ensure this script runs as SUDO or root user
+
+# halt sshd
+systemctl stop sshd.service
+
+# remove certs
+rm /etc/ssh/ssh_host_*
+
+# regen certs
+ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
+ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
+ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key
+
+# start sshd
+systemctl start sshd.service
+
+#
+# done
+#

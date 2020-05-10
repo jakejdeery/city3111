@@ -1,0 +1,6 @@
+pacman -Syu --noconfirm
+pacman -S wget --noconfirm
+pacman -S subversion --noconfirm
+pacman -S openmpi --noconfirm
+[...]
+systemctl start sshd.service --force

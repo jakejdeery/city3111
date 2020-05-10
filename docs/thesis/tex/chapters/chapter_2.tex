@@ -54,6 +54,16 @@ Lastly, I come to the third classification which is rolling release distribution
 
 I am choosing to use Manjaro for my project due to its merits as a bleeding-edge distro, where Manjaro Architect shall allow me to design an image with very low memory and CPU overhead and the bare-bones package subset I will need to run and test my cluster.
 
+\textbf{\sffamily{Measuring the system: A benchmarking software}}
+
+In order to provide metrics on the performance of my system as nodes are scaled and introduced, I will need to benchmark them. While there are benchmarking suites out there such as LINPACK \cite{dongarra_1979} which will do a commendable job in assessing my cluster's performance, I wish to take the challenge upon myself to program a suitable binary for this job and there are two distinct reasons for this.
+
+Firstly, LINPACK is a complex suite of benchmarking softwares which, while tried and tested, are also barely understood by myself and it would take a comprehensive reading far outside the scope of this project for me to come to understand. My logic stands that if I were to write my own benchmarking software, I could both learn how parallel programming is done and also offer deeper insight into what the results mean than if I were to use a prepackaged binary to do the same job.
+
+Secondly, LINPACK takes an extraordinary amount of time and memory to do its job. While this wouldn't necessarily be an issue on a singular test run or on a system where the computational power is exceptionally large, my system fits neither of those descriptors. With my own benchmarking software, I can design in a mechanism to allow for well-scaled performance curves that still offer a picture of the system's overall power availability.
+
+To fulfil this aim, I will need as a basic requirement to maximise CPU time used on all given nodes. A computationally expensive problem must be found and during testing CPU readings on each node must be taken during each run to confirm the process is fulfilling these requirements.
+
 \textbf{\sffamily{A final word: Other software packages required}}
 
 I've discussed in detail the implementation of MPI I will be using in my literature review, as well as the existing software running on my DS that will allow guest OSes to be spawned and communicate with each other. I have also performed a condensed look on the types of OS I could and will use for my project. I will now close this portion of the chapter by discussing the other software packages that will be needed to enable my Beowulf cluster.

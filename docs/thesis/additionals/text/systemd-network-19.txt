@@ -1,0 +1,6 @@
+[Match]
+Name=ens19
+
+[Network]
+Address=2001:56::5/64
+Address=192.168.56.5/24

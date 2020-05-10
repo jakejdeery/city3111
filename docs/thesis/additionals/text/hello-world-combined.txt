@@ -1,0 +1,9 @@
+# cat ~/helloWorld/hostfile
+city3111-vm1	slots=2
+city3111-vm2	slots=2
+city3111-vm3	slots=2
+city3111-vm4	slots=2
+city3111-vm5	slots=2
+
+# cat ~/helloWorld/run_mpi.sh
+mpirun -np 10 -hostfile ./hostfile ./main
