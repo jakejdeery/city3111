@@ -56,7 +56,7 @@ Once the system has been booted, the installer automatically starts a shell with
 \begin{center}
     \emph{Pre-setup commands}
 \end{center}
-\vfill
+\vfill\break
 
 Within the setup, I am met with numerous options, many of which do not necessarily apply to me. To keep this write-up as simple as possible I will explain only the steps that apply to me, starting with disc partitioning. Architect offers automatic partitioning as a preparatory option, however this involves creating a swap drive which, once configured, is difficult to modify.As I have mentioned, I may want to modify the amount of RAM I allocate to each of my nodes. This is much easier to do by creating a swap file on the root partition instead.
 
@@ -156,7 +156,7 @@ To achieve this, all I need to do is list the IPs of each node in order and the 
 \begin{center}
     \emph{Full contents of `/etc/hosts' file}
 \end{center}
-\vfill
+\vfill\break
 
 \textbf{\sffamily{Setting up and configuring the guest OS: Cloning \& Tidy-up}}
 
@@ -218,7 +218,7 @@ Please bear in mind that the hostname must be changed for each new target node. 
 \vfill\break
 
 \section{Implementation and Testing: Creating my custom software}
-With my cluster environment configured, I am ready to program for the MPI runtime. To do this, I intend on compiling two programs. The first is a basic hello world program (already referenced, found in Appendix α) which I will use to test my cluster functions as intended and all nodes respond to commands. The second program is a currently abstract custom software suite which will brute-force the eggholder function, as discussed in Chapter 3.
+With my cluster environment configured, I am ready to program for the MPI runtime. To do this, I intend on compiling two programs. The first is a basic hello world program \cite{barrett_et_al_2006} which I will use to test my cluster functions as intended and all nodes respond to commands. The second program is a currently abstract custom software suite which will brute-force the eggholder function, as discussed in Chapter 3.
 
 I hope this process to be a straight-forward one, however there is a high likelihood I may need to iterate my program several times in order to get it to work as I intend before I can conclude this chapter and move on to my review. As discussed in the second chapter, my custom software will be required to maximise CPU usage while measuring the cluster's performance so it is imperative the software is efficiently designed.
 
@@ -261,7 +261,7 @@ Revision five marks the first working and compiled version of my program. To beg
     \label{figure_16}
 \end{figure}
 
-The software appears to work in principle, with both of my development machine's CPU cores spinning up to 100\% for the 5 700 ms in which the program runs for. This initial promise is, however, dampened by several issues both in terms of functionality and semantics.
+This initial revision of my software appears to work in principle, with both of my development machine's CPU cores spinning up to 100\% for the 5 700 ms in which the program runs for. The inceptive promise is, however, dampened by several issues both in terms of functionality and semantics.
 
 Addressing firstly the functionality of my program, the overall verbosity isn't yet up to the standards I wish it to be. Currently, I am only being presented with statistics on each node's effort, timings, best fit value and co-ordinates. While this data is entirely acceptable and I don't need anything else in terms of content, what will not be acceptable as I add more nodes is the lack of combined metrics.
 

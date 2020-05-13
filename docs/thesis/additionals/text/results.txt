@@ -1,579 +1,589 @@
 ================================================
-= 5 OF 5 NODES, 10 PROCESSES, PRECISION = 0,01 =
+= 1 OF 5 NODES, 02 PROCESSES, PRECISION = 0,01 =
 ================================================
 
 = 1 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 1,04919e+08 loops each
-[I] The program ran through approx. 1,04919e+09 loops in total
-[I] This took approx. 9 134,18 ms per process
-[I] The best fit was -952,503 at {-83,33;235,67}
-[I] The best fit was found by process 4 of 10
+[I] Each process ran through approx. 5,24308e+09 loops each
+[I] The program ran through approx. 1,04863e+10 loops in total
+[I] This took approx. 426 463 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 2 of 2
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 2 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 1,04919e+08 loops each
-[I] The program ran through approx. 1,04919e+09 loops in total
-[I] This took approx. 8 665,52 ms per process
-[I] The best fit was -952,503 at {483,32;433,34}
-[I] The best fit was found by process 10 of 10
+[I] Each process ran through approx. 5,24308e+09 loops each
+[I] The program ran through approx. 1,04863e+10 loops in total
+[I] This took approx. 426 406 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 2 of 2
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 3 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 1,04919e+08 loops each
-[I] The program ran through approx. 1,04919e+09 loops in total
-[I] This took approx. 8 917,43 ms per process
-[I] The best fit was -952,503 at {-177,23;-2,34}
-[I] The best fit was found by process 4 of 10
+[I] Each process ran through approx. 5,24308e+09 loops each
+[I] The program ran through approx. 1,04863e+10 loops in total
+[I] This took approx. 426 399 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 2 of 2
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 4 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 1,04919e+08 loops each
-[I] The program ran through approx. 1,04919e+09 loops in total
-[I] This took approx. 8 825,61 ms per process
-[I] The best fit was -952,503 at {483,32;433,34}
-[I] The best fit was found by process 10 of 10
+[I] Each process ran through approx. 5,24308e+09 loops each
+[I] The program ran through approx. 1,04863e+10 loops in total
+[I] This took approx. 426 383 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 2 of 2
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 5 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 1,04919e+08 loops each
-[I] The program ran through approx. 1,04919e+09 loops in total
-[I] This took approx. 8 969,62 ms per process
-[I] The best fit was -952,503 at {-177,23;235,67}
-[I] The best fit was found by process 4 of 10
+[I] Each process ran through approx. 5,24308e+09 loops each
+[I] The program ran through approx. 1,04863e+10 loops in total
+[I] This took approx. 426 409 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 2 of 2
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 6 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 1,04919e+08 loops each
-[I] The program ran through approx. 1,04919e+09 loops in total
-[I] This took approx. 9 082,78 ms per process
-[I] The best fit was -952,503 at {483,32;-102,38}
-[I] The best fit was found by process 6 of 10
+[I] Each process ran through approx. 5,24308e+09 loops each
+[I] The program ran through approx. 1,04863e+10 loops in total
+[I] This took approx. 426 412 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 2 of 2
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 7 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 1,04919e+08 loops each
-[I] The program ran through approx. 1,04919e+09 loops in total
-[I] This took approx. 9 053,99 ms per process
-[I] The best fit was -952,503 at {147,2;235,67}
-[I] The best fit was found by process 5 of 10
+[I] Each process ran through approx. 5,24308e+09 loops each
+[I] The program ran through approx. 1,04863e+10 loops in total
+[I] This took approx. 426 445 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 2 of 2
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
-================================================
-= 4 OF 5 NODES, 08 PROCESSES, PRECISION = 0,01 =
-================================================
 
-= 1 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 1,63917e+08 loops each
-[I] The program ran through approx. 1,31133e+09 loops in total
-[I] This took approx. 13 966,5 ms per process
-[I] The best fit was -959,59 at {-220,65;84,99}
-[I] The best fit was found by process 3 of 8
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 2 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 1,63917e+08 loops each
-[I] The program ran through approx. 1,31133e+09 loops in total
-[I] This took approx. 13 922,5 ms per process
-[I] The best fit was -959,59 at {241,99;267,67}
-[I] The best fit was found by process 3 of 8
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 3 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 1,63917e+08 loops each
-[I] The program ran through approx. 1,31133e+09 loops in total
-[I] This took approx. 13 872,9 ms per process
-[I] The best fit was -959,59 at {-102,66;84,99}
-[I] The best fit was found by process 3 of 8
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 4 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 1,63917e+08 loops each
-[I] The program ran through approx. 1,31133e+09 loops in total
-[I] This took approx. 13 875,9 ms per process
-[I] The best fit was -959,59 at {512,01;404}
-[I] The best fit was found by process 8 of 8
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 5 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 1,63917e+08 loops each
-[I] The program ran through approx. 1,31133e+09 loops in total
-[I] This took approx. 14 016,7 ms per process
-[I] The best fit was -959,59 at {127,99;267,67}
-[I] The best fit was found by process 3 of 8
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 6 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 1,63917e+08 loops each
-[I] The program ran through approx. 1,31133e+09 loops in total
-[I] This took approx. 13 623,9 ms per process
-[I] The best fit was -959,59 at {512,01;404}
-[I] The best fit was found by process 8 of 8
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 7 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 1,63917e+08 loops each
-[I] The program ran through approx. 1,31133e+09 loops in total
-[I] This took approx. 13 713,4 ms per process
-[I] The best fit was -959,59 at {512,01;404}
-[I] The best fit was found by process 8 of 8
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-================================================
-= 3 OF 5 NODES, 06 PROCESSES, PRECISION = 0,01 =
-================================================
-
-= 1 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 2,91351e+08 loops each
-[I] The program ran through approx. 1,7481e+09 loops in total
-[I] This took approx. 24 695,3 ms per process
-[I] The best fit was -958,532 at {-170,657;216,667}
-[I] The best fit was found by process 3 of 6
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 2= 
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 2,91351e+08 loops each
-[I] The program ran through approx. 1,7481e+09 loops in total
-[I] This took approx. 24 706,7 ms per process
-[I] The best fit was -958,532 at {-170,657;403,993}
-[I] The best fit was found by process 5 of 6
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 3 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 2,91351e+08 loops each
-[I] The program ran through approx. 1,7481e+09 loops in total
-[I] This took approx. 24 461,2 ms per process
-[I] The best fit was -958,532 at {512,003;403,993}
-[I] The best fit was found by process 6 of 6
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 4 =
-^[[A[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 2,91351e+08 loops each
-[I] The program ran through approx. 1,7481e+09 loops in total
-[I] This took approx. 24 615,7 ms per process
-[I] The best fit was -958,532 at {512,003;216,667}
-[I] The best fit was found by process 4 of 6
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 5 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 2,91351e+08 loops each
-[I] The program ran through approx. 1,7481e+09 loops in total
-[I] This took approx. 24 482,1 ms per process
-[I] The best fit was -958,532 at {-170,657;64,65}
-[I] The best fit was found by process 3 of 6
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 6 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 2,91351e+08 loops each
-[I] The program ran through approx. 1,7481e+09 loops in total
-[I] This took approx. 24 237,5 ms per process
-[I] The best fit was -958,532 at {512,003;-95,6667}
-[I] The best fit was found by process 3 of 6
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
-
-= 7 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
-[I] Initialising program . . . done
-[I] Initialising op object . . . done
-
-
-[I] Starting op search . . . done
-[I] Each process ran through approx. 2,91351e+08 loops each
-[I] The program ran through approx. 1,7481e+09 loops in total
-[I] This took approx. 24 788,9 ms per process
-[I] The best fit was -958,532 at {170,66;216,667}
-[I] The best fit was found by process 3 of 6
-
-[I] Deleting op module . . . done
-[E] Program quitting . . . done
 
 ================================================
 = 2 OF 5 NODES, 04 PROCESSES, PRECISION = 0,01 =
 ================================================
 
 = 1 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 6,55514e+08 loops each
-[I] The program ran through approx. 2,62205e+09 loops in total
-[I] This took approx. 54 488,3 ms per process
-[I] The best fit was -959,59 at {512,01;404}
+[I] Each process ran through approx. 2,6218e+09 loops each
+[I] The program ran through approx. 1,04867e+10 loops in total
+[I] This took approx. 219 375 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
 [I] The best fit was found by process 4 of 4
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 2 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 6,55514e+08 loops each
-[I] The program ran through approx. 2,62205e+09 loops in total
-[I] This took approx. 55 610,3 ms per process
-[I] The best fit was -959,59 at {241,99;256}
+[I] Each process ran through approx. 2,6218e+09 loops each
+[I] The program ran through approx. 1,04867e+10 loops in total
+[I] This took approx. 219 402 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
 [I] The best fit was found by process 4 of 4
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 3 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 6,55514e+08 loops each
-[I] The program ran through approx. 2,62205e+09 loops in total
-[I] This took approx. 55 075,5 ms per process
-[I] The best fit was -959,59 at {512,01;256}
-[I] The best fit was found by process 3 of 4
+[I] Each process ran through approx. 2,6218e+09 loops each
+[I] The program ran through approx. 1,04867e+10 loops in total
+[I] This took approx. 219 516 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 4 of 4
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 4 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 6,55514e+08 loops each
-[I] The program ran through approx. 2,62205e+09 loops in total
-[I] This took approx. 54 739,1 ms per process
-[I] The best fit was -959,59 at {512,01;404}
+[I] Each process ran through approx. 2,6218e+09 loops each
+[I] The program ran through approx. 1,04867e+10 loops in total
+[I] This took approx. 219 438 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
 [I] The best fit was found by process 4 of 4
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 5 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 6,55514e+08 loops each
-[I] The program ran through approx. 2,62205e+09 loops in total
-[I] This took approx. 54 629,5 ms per process
-[I] The best fit was -959,59 at {512,01;404}
+[I] Each process ran through approx. 2,6218e+09 loops each
+[I] The program ran through approx. 1,04867e+10 loops in total
+[I] This took approx. 219 375 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
 [I] The best fit was found by process 4 of 4
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 6 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 6,55514e+08 loops each
-[I] The program ran through approx. 2,62205e+09 loops in total
-[I] This took approx. 54 719,7 ms per process
-[I] The best fit was -959,59 at {512,01;404}
+[I] Each process ran through approx. 2,6218e+09 loops each
+[I] The program ran through approx. 1,04867e+10 loops in total
+[I] This took approx. 219 418 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
 [I] The best fit was found by process 4 of 4
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 7 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 6,55514e+08 loops each
-[I] The program ran through approx. 2,62205e+09 loops in total
-[I] This took approx. 55 059,2 ms per process
-[I] The best fit was -959,59 at {512,01;404}
+[I] Each process ran through approx. 2,6218e+09 loops each
+[I] The program ran through approx. 1,04867e+10 loops in total
+[I] This took approx. 219 461 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
 [I] The best fit was found by process 4 of 4
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
+
+
 ================================================
-= 1 OF 5 NODES, 04 PROCESSES, PRECISION = 0,01 =
+= 3 OF 5 NODES, 06 PROCESSES, PRECISION = 0,01 =
 ================================================
 
 = 1 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 2,62154e+09 loops each
-[I] The program ran through approx. 5,24308e+09 loops in total
-[I] This took approx. 219 190 ms per process
-[I] The best fit was -959,59 at {512,01;404}
-[I] The best fit was found by process 2 of 2
+[I] Each process ran through approx. 1,7479e+09 loops each
+[I] The program ran through approx. 1,04869e+10 loops in total
+[I] This took approx. 146 156 ms per process
+[I] The best fit was -959,583 at {512,003;404}
+[I] The best fit was found by process 6 of 6
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 2 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 2,62154e+09 loops each
-[I] The program ran through approx. 5,24308e+09 loops in total
-[I] This took approx. 217 957 ms per process
-[I] The best fit was -959,59 at {512,01;404}
-[I] The best fit was found by process 2 of 2
+[I] Each process ran through approx. 1,7479e+09 loops each
+[I] The program ran through approx. 1,04869e+10 loops in total
+[I] This took approx. 145 812 ms per process
+[I] The best fit was -959,583 at {512,003;404}
+[I] The best fit was found by process 6 of 6
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 3 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 2,62154e+09 loops each
-[I] The program ran through approx. 5,24308e+09 loops in total
-[I] This took approx. 218 040 ms per process
-[I] The best fit was -959,59 at {512,01;404}
-[I] The best fit was found by process 2 of 2
+[I] Each process ran through approx. 1,7479e+09 loops each
+[I] The program ran through approx. 1,04869e+10 loops in total
+[I] This took approx. 145 958 ms per process
+[I] The best fit was -959,583 at {512,003;404}
+[I] The best fit was found by process 6 of 6
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 4 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 2,62154e+09 loops each
-[I] The program ran through approx. 5,24308e+09 loops in total
-[I] This took approx. 218 891 ms per process
-[I] The best fit was -959,59 at {512,01;404}
-[I] The best fit was found by process 2 of 2
+[I] Each process ran through approx. 1,7479e+09 loops each
+[I] The program ran through approx. 1,04869e+10 loops in total
+[I] This took approx. 146 044 ms per process
+[I] The best fit was -959,583 at {512,003;404}
+[I] The best fit was found by process 6 of 6
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 5 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 2,62154e+09 loops each
-[I] The program ran through approx. 5,24308e+09 loops in total
-[I] This took approx. 217 308 ms per process
-[I] The best fit was -959,59 at {512,01;404}
-[I] The best fit was found by process 2 of 2
+[I] Each process ran through approx. 1,7479e+09 loops each
+[I] The program ran through approx. 1,04869e+10 loops in total
+[I] This took approx. 145 976 ms per process
+[I] The best fit was -959,583 at {512,003;404}
+[I] The best fit was found by process 6 of 6
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 6 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 2,62154e+09 loops each
-[I] The program ran through approx. 5,24308e+09 loops in total
-[I] This took approx. 217 758 ms per process
-[I] The best fit was -959,59 at {512,01;404}
-[I] The best fit was found by process 2 of 2
+[I] Each process ran through approx. 1,7479e+09 loops each
+[I] The program ran through approx. 1,04869e+10 loops in total
+[I] This took approx. 146 182 ms per process
+[I] The best fit was -959,583 at {512,003;404}
+[I] The best fit was found by process 6 of 6
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
 
 = 7 =
-[I] CITY3111 (Op1) program by Jake Deery, 2020 . . .
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
 [I] Initialising program . . . done
 [I] Initialising op object . . . done
 
 
 [I] Starting op search . . . done
-[I] Each process ran through approx. 2,62154e+09 loops each
-[I] The program ran through approx. 5,24308e+09 loops in total
-[I] This took approx. 217 420 ms per process
-[I] The best fit was -959,59 at {512,01;404}
-[I] The best fit was found by process 2 of 2
+[I] Each process ran through approx. 1,7479e+09 loops each
+[I] The program ran through approx. 1,04869e+10 loops in total
+[I] This took approx. 145 836 ms per process
+[I] The best fit was -959,583 at {512,003;404}
+[I] The best fit was found by process 6 of 6
 
 [I] Deleting op module . . . done
 [E] Program quitting . . . done
+
+
+
+================================================
+= 4 OF 5 NODES, 08 PROCESSES, PRECISION = 0,01 =
+================================================
+
+= 1 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,31105e+09 loops each
+[I] The program ran through approx. 1,04873e+10 loops in total
+[I] This took approx. 109 863 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 8 of 8
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 2 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,31105e+09 loops each
+[I] The program ran through approx. 1,04873e+10 loops in total
+[I] This took approx. 110 628 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 8 of 8
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 3 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,31105e+09 loops each
+[I] The program ran through approx. 1,04873e+10 loops in total
+[I] This took approx. 110 264 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 8 of 8
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 4 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,31105e+09 loops each
+[I] The program ran through approx. 1,04873e+10 loops in total
+[I] This took approx. 109 804 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 8 of 8
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 5 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,31105e+09 loops each
+[I] The program ran through approx. 1,04873e+10 loops in total
+[I] This took approx. 110 756 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 8 of 8
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 6 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,31105e+09 loops each
+[I] The program ran through approx. 1,04873e+10 loops in total
+[I] This took approx. 110 681 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 8 of 8
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 7 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,31105e+09 loops each
+[I] The program ran through approx. 1,04873e+10 loops in total
+[I] This took approx. 110 617 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 8 of 8
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+
+
+================================================
+= 5 OF 5 NODES, 10 PROCESSES, PRECISION = 0,01 =
+================================================
+
+= 1 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,0489e+09 loops each
+[I] The program ran through approx. 1,04877e+10 loops in total
+[I] This took approx. 87 874,8 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 10 of 10
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 2 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,0489e+09 loops each
+[I] The program ran through approx. 1,04877e+10 loops in total
+[I] This took approx. 87 892,6 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 10 of 10
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 3 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,0489e+09 loops each
+[I] The program ran through approx. 1,04877e+10 loops in total
+[I] This took approx. 87 905,5 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 10 of 10
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 4 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,0489e+09 loops each
+[I] The program ran through approx. 1,04877e+10 loops in total
+[I] This took approx. 88 008,3 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 10 of 10
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 5 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,0489e+09 loops each
+[I] The program ran through approx. 1,04877e+10 loops in total
+[I] This took approx. 88 038,5 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 10 of 10
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 6 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,0489e+09 loops each
+[I] The program ran through approx. 1,04877e+10 loops in total
+[I] This took approx. 87 895,7 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 10 of 10
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+= 7 =
+[I] CITY3111 (Op1) program by Jake Deery, 2020 . . . 
+[I] Initialising program . . . done
+[I] Initialising op object . . . done
+
+
+[I] Starting op search . . . done
+[I] Each process ran through approx. 1,0489e+09 loops each
+[I] The program ran through approx. 1,04877e+10 loops in total
+[I] This took approx. 87 961,4 ms per process
+[I] The best fit was -959,6 at {512,01;404,01}
+[I] The best fit was found by process 10 of 10
+
+[I] Deleting op module . . . done
+[E] Program quitting . . . done
+
+
