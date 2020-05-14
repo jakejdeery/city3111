@@ -56,11 +56,11 @@ Once the system has been booted, the installer automatically starts a shell with
 \begin{center}
     \emph{Pre-setup commands}
 \end{center}
-\vfill\break
 
 Within the setup, I am met with numerous options, many of which do not necessarily apply to me. To keep this write-up as simple as possible I will explain only the steps that apply to me, starting with disc partitioning. Architect offers automatic partitioning as a preparatory option, however this involves creating a swap drive which, once configured, is difficult to modify.As I have mentioned, I may want to modify the amount of RAM I allocate to each of my nodes. This is much easier to do by creating a swap file on the root partition instead.
 
 My best option is therefore to create my own partition table using the `cgdisk' utility. My partition table needs to account for an EFI boot volume, of which I will allocate 35 MB of space for. The rest of the disc becomes my root partition where the operating system will reside.
+\vfill\break
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_11.png}
@@ -156,7 +156,6 @@ To achieve this, all I need to do is list the IPs of each node in order and the 
 \begin{center}
     \emph{Full contents of `/etc/hosts' file}
 \end{center}
-\vfill\break
 
 \textbf{\sffamily{Setting up and configuring the guest OS: Cloning \& Tidy-up}}
 
@@ -165,6 +164,7 @@ With my operating system now fundamentally ready for service, the last step I ne
 For each of these steps, I will demonstrate how the process is completed on one node. Please bare in mind that the process is in fact going to be completed on the four additional nodes in sequence.
 
 Firstly, I need to clone my master node out into the four other nodes. In Proxmox VE, a wizard is available which will automatically handle file replication and configuration matching. In the past I have found this option to be reliable so I will utilise it today.
+\vfill\break
 
 \begin{figure}[H]
     \includegraphics[width=\linewidth]{CITY3111/bitmaps/figure_14.png}

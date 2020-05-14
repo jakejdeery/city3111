@@ -7,10 +7,26 @@
 
 \chapter*{Introduction}
 
-\textbf{\sffamily{Background \& description}}
+\textbf{\sffamily{Research brief, focus \& justifications}}
 
-\textbf{\sffamily{Focus \& motivations}}
+Beowulf computers were first devised as a concept by Sterling and Becker in 1995 \cite{sterling_1995} to refer to a specific cluster computer built entirely using `beige box', off-the-shelf commodity hardware.  Up until that stage in inter-nodal parallel computation, only specialist systems designed to be used as super-compute systems had existed and were certainly the preserve of high-budget projects.
 
-\textbf{\sffamily{Value \& justifications}}
+Today, I believe there are sufficient tools available as free open-source software (FOSS) to facilitate Beowulf computing in a non-commercial environment. To that end, I hope to build such a cluster and either develop of acquire software which might benchmark the system with a view to prove the concept of easy-assembly high-performance computers at a minimal cost to the constructor and maintainer. 
 
-\textbf{\sffamily{Research goals}}
+The focus of my research is aimed primarily at the construction and benchmarking of the Beowulf cluster. Specifically, I aim to demonstrate that a problem can be solved at a much greater speed when parallelism has been achieved compared to traditional single-threaded computation.
+
+I believe that using commodity hardware to produce a cluster such as the one I aim to build has the potential to become a large part of many initiatives where the discovery of new knowledge is concerned. So-called `cloud computing' already offers the ability to do this to a degree, however, in many cases having an in-house solution offers greater benefits and fine control to a research effort and can also be more cost-effective if the system is to be utilised long-term.
+
+\textbf{\sffamily{Overview of report content}}
+
+For my first chapter, literature review, I hope to explore what parallelism offers and how it can be achieved, including discussions on what technologies exist (MPI, PVM, etc) to facilitate a FOSS Beowulf cluster on commodity hardware. I aim to offer examples of software that exists which demonstrates another, similar system to the one I will build that functions and conclude by exploring alternative methods to how I might achieve my goal from those discussed in my review.
+
+Chapter two should outline the requirements of my system and what it should achieve. I hope to specify some of the tools I'll need to achieve the research goal of a functional high-performance computer and discuss any additional components I might need that do not directly fall into pre-determined categories of software or hardware. I hope to also decide at this stage if I will use a packaged benchmarking suite for my system or build my own custom benchmarking software.
+
+Chapter three will expand on the previous chapter by forming a more concrete plan on how I will implement the Beowulf cluster. This will include discussions and visual diagrams on aspects of the system which will require meticulous construction, such as the network environment, choice of operating system and, if appropriate, custom software design. I will conclude this chapter by addressing any remaining design considerations I may need to take into account.
+
+My fourth chapter will be centred around the implementation and testing of my system. Specifically, I will run through in chronological order the practical steps I undertake in order to complete the construction of my Beowulf cluster, discussing any hurdles I encounter as I progress. This chapter will be broken down into two sections, with the first being dedicated to the journaling of my hardware and operating system configuration and the second being dedicated to the benchmarking software creation (if applicable) and cluster testing.
+
+The final chapter, a collection, discussion and review of my results, will hopefully collect results from a working prototype benchmarking system with a view to ascertain if my cluster is working and, if so, how well it is performing. This chapter will therefore be quite short, aiming simply to answer in a concise manner the nature of my project's success. Within, I might discuss issues with the implementation if any exist before suggesting improvements and opportunities of future continuation research.
+
+Lastly, I will present a conclusion which re-iterates the contents of this body of work in a more concise fashion before terminating the dissertation.
